@@ -12,7 +12,16 @@ import { setUser, setMountStore } from "@/redux/reducers/TaskReducer";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
-
+import Header from "@/components/Header";
+import Image from "next/image";
+import announcmnt from "@/public/announcment.png"
+import games from "@/public/gamebg.png"
+import funGames from "@/public/fungames.png"
+import gm2 from "@/public/gamebg-card.png"
+import gm3 from "@/public/raceing.png"
+import gm4 from "@/public/crdwe.png"
+import { EarnIcon, GamePad, ViewIcon } from "@/utils/icons";
+import { fill } from "lodash";
 interface Game {
   level: number;
   name: string;
@@ -188,221 +197,106 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   }, [profit, dispatch]);
 
   return (
+
     <>
-      <div>
-        <style>
-          {`
-            .animation {
-              opacity: 1;
-              animation-name: example;
-              animation-duration: 1s;
-              animation-fill-mode: forwards;
-            }
+       <Header/>
+       <div>
+        
+       </div>
+   <div className="flex-row flex justify-around py-8">
+    <p>  <Image className="h-[30px] w-[40px]" src={announcmnt} alt="Logo" /></p><p>mohit_sh earn        3,500 in Racing</p>
+    <p>  <Image className="h-[30px] w-[40px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
+   </div>
+<div className="h-[60vh] overflow-scroll">
+   <div className="games gap-3 px-3 flex flex-row mt-3">
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={games} alt="Logo" />
 
-            @keyframes example {
-              0%   {opacity: 1; left :${mousePosition.x + "px"}; top:${
-            mousePosition.y + "px"
-          };}
-              100% {opacity: 0; left: ${mousePosition.x + "px"}; top:${
-            mousePosition.y - 200 + "px"
-          };}
-            }
-            `}
-        </style>
-      </div>
-      <div className="relative border-t border-[#DFDCD5] flex-1 overflow-x-hidden">
-        <div className="flex flex-col gap-5 relative z-[1] px-5 pt-[10px] pb-[150px] rounded-t-3xl bg-gradient-to-b from-[#FFF3D8] to-[#F8DFA6] overflow-y-auto h-full">
-          <div className="flex gap-1">
-            <div className="bg-gradient-to-b from-[#FFFFFF] to-[#F2F2F2] shadow-[0px_4px_0px_0px_#CACACA] rounded-[10px] w-full flex flex-col items-center p-[10px]">
-              <p className="font-semibold text-[#DD523A] text-xs text-center">
-                Earn /Tap
-              </p>
-              <div className="flex gap-1">
-                <img src="/images/coin.png" className="w-5 h-5" alt="" />
-                <p className="text-lg font-semibold">+{tap}</p>
-              </div>
-            </div>
-            <div className="bg-gradient-to-b from-[#FFFFFF] to-[#F2F2F2] shadow-[0px_4px_0px_0px_#CACACA] rounded-[10px] w-full flex flex-col items-center p-[10px]">
-              <p className="font-semibold text-[#DD523A] text-xs text-center">
-                Coins to level up
-              </p>
-              <div className="flex gap-1">
-                <img src="/images/coin.png" className="w-5 h-5" alt="" />
-                <p className="text-lg font-semibold">{lvlcoin}</p>
-              </div>
-            </div>
-            <div className="bg-gradient-to-b from-[#FFFFFF] to-[#F2F2F2] shadow-[0px_4px_0px_0px_#CACACA] rounded-[10px] w-full flex flex-col items-center p-[10px]">
-              <p className="font-semibold text-[#DD523A] text-xs text-center">
-                Profit /Hour
-              </p>
-              <div className="flex gap-1">
-                <img src="/images/coin.png" className="w-5 h-5" alt="" />
-                <p className="text-lg font-semibold">+{profit}</p>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-center items-center gap-[6px]">
-            <img src="/images/coin.png" alt="" />
-            <p className="text-[#FFC700] font-extrabold text-5xl flex justify-center items-center">
-              {count}
-            </p>
-          </div>
-          <div>
-            <div className="flex text-white items-center relative z-[2] font-bold">
-              <div className="font-semibold text-[14px] text-black flex">
-                <img src={getLevelInfo().image} className="w-8 h-8" alt="" />
-                <span className="flex justify-center items-center ml-1">
-                  {getLevelInfo().text}
-                </span>
-              </div>
-              <div className="ml-auto font-semibold text-[14px] text-main">
-                <span className="text-[12px] text-black mr-1.5">Level</span>
-                {getLevelInfo().number}/10
-              </div>
-            </div>
+    </div>
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
 
-            <div className="z-[2] relative overflow-hidden min-h-3 rounded-full bg-[#D9D9D9] font-bold mt-2">
-              <div
-                className="h-3 rounded-full transition-transform !duration-500 bg-main"
-                style={{
-                  transform: `translateX(-${
-                    100 - ((count % lvlcoin) / lvlcoin) * 100
-                  }%)`,
-                }}
-              ></div>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <p className="bg-gradient-to-b from-[#DD523A] to-[#C24934] shadow-[0px_4px_0px_0px_#AB402D] text-white rounded-[20px] p-[10px] z-[10]">
-              Tap to collect
-            </p>
-          </div>
-          <div
-            className="flex justify-center mt-[-50px]"
-            onClick={handleIncrement}
-          >
-            <img
-              src="/images/egg-full.png"
-              className={`w-[390px] h-[390px] ${tap > 2 ? "hidden" : ""}`}
-              alt=""
-            />
-            <img
-              src="/images/egg-bitbroken.png"
-              className={`w-[390px] h-[390px] ${
-                tap > 4 || tap < 3 ? "hidden" : ""
-              }`}
-              alt=""
-            />
-            <img
-              src="/images/redbird.png"
-              className={`w-[390px] h-[390px] ${tap < 5 ? "hidden" : ""}`}
-              alt=""
-            />
-            {alert === 1 &&
-              pulses.map((x: any, i: number) => (
-                <div
-                  className={`animation font-medium text-[50px] text-[black] pointer-events-none select-none translate-x-1/2"`}
-                  style={{
-                    position: "fixed",
-                    left: mousePosition.x + "px",
-                    top: mousePosition.y + "px",
-                  }}
-                  key={i}
-                >
-                  <img
-                    className="w-[50px] h-[50px]"
-                    src="/images/coin.png"
-                    alt=""
-                  />
-                </div>
-              ))}
-          </div>
-          <div className="flex font-bold text-[18px] text-black mt-[-50px]">
-            <div className="flex items-center space-x-2 bg-gradient-to-b from-[#EEEEEE] to-[#FFFFFF] shadow-[0px_4px_0px_0px_#CACACA] px-[15px] py-[10px] rounded-[10px]">
-              <img src="/images/lightening.svg" />
-              <span>
-                <span className="text-main">{mount}</span> / 1000
-              </span>
-              <img src="/images/pajamas_information-o.png" alt="" />
-            </div>
-            <Link
-              href={`/flappygame`}
-              className={`flex items-center space-x-2 bg-gradient-to-b from-[#EEEEEE] to-[#FFFFFF] shadow-[0px_4px_0px_0px_#CACACA] px-[15px] py-[10px] rounded-[10px] ml-auto ${
-                tap > 4 ? "block" : "hidden"
-              }`}
-            >
-              <img src="/images/redbird-small.svg" alt="" />
-              <span className="text-[#E3310B]">Game Go</span>
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center absolute left-[20px] bottom-[20px] z-[100] w-[calc(100%-40px)]">
-        <div className="grid grid-cols-5 justify-center mt-auto shadow-[0px_4px_0px_0px_#CACACA] bg-white py-[10px] px-[9px] gap-[6px] w-full font-medium text-[12px] rounded-[25px]">
-          <Link href={`/mine`}>
+    </div>
+   </div>
+   <div className="games gap-3 px-3 flex flex-row mt-3">
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
+
+    </div>
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
+
+    </div>
+   </div>
+   <div className="games gap-3 px-3 flex flex-row mt-3">
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={games} alt="Logo" />
+
+    </div>
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
+
+    </div>
+   </div>
+   <div className="games gap-3 px-3 flex flex-row mt-3">
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
+
+    </div>
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
+
+    </div>
+   </div>
+
+   <div className="games gap-3 px-3 flex flex-row mt-3">
+    <div className="w-[100%]">
+    <Image className="h-[auto] w-[100%]" src={funGames} alt="Logo" />
+
+    </div>
+   
+   </div>
+   </div>
+
+   <div className="flex justify-center absolute left-[00px] bottom-[0px] z-[100] w-[calc(100%)] bg-white py-3 px-4 ">
+        <div className="flex flex-row gap-8 items-center justify-between w-[100%] ">
+        <Link href={`/`}>
             <div
               className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
                 (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
-              <img src="/images/footer-mine.png" />
-              <div className="text-center">Mine</div>
+             <GamePad/>
+              <div className="text-center text-[20px]">GAMES</div>
             </div>
           </Link>
-          <Link href={"/earn"}>
+          <Link href={`/`}>
             <div
               className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/earn"
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
-              <img src="/images/footer-earn.png" />
-              <div>Earn</div>
+             <ViewIcon/>
+              <div className="text-center text-[20px]">PREDICT</div>
             </div>
           </Link>
-          <Link href={`/?user=${user}`}>
+          <Link href={`/`}>
             <div
               className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/" ? "text-[#00B2FF]" : "text-[#A4A4A4]")
-              }
-            >
-              <img
-                src="/images/footer-game.png"
-                className="mt-[-25px] w-[75px] h-[75px]"
-              />
-              <div>Game</div>
-            </div>
-          </Link>
-          <Link href={"/friend"}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/friend"
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
-              <img src="/images/footer-friend.png" />
-              <div>Friends</div>
-            </div>
-          </Link>
-          <Link href={"/account"}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/account"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <img src="/images/footer-account.png" />
-              <div>Account</div>
+             <EarnIcon/>
+              <div className="text-center text-[20px]">EARN</div>
             </div>
           </Link>
         </div>

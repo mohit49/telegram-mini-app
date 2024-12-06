@@ -10,6 +10,7 @@ import Pipes from "./Pipes";
 import useElementSize from "../hooks/useElementSize";
 import NowScore from "./Nowscore";
 import _ from "lodash";
+import Header from "./Header";
 
 export default function Game() {
   const { handleWindowClick, startGame, isReady, rounds } = useGame();
@@ -28,6 +29,7 @@ export default function Game() {
       className="relative overflow-x-hidden h-full bg-white select-none"
     >
       <Background />
+     
       <motion.div
         ref={ref}
         key={_.last(rounds)?.key || "initial"}
