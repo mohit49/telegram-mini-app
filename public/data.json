@@ -1,0 +1,54 @@
+{
+  "games": [
+    {
+      "level": 1,
+      "name": "Rookie",
+      "mount": 20
+    },
+    {
+      "level": 2,
+      "name": "Bronze",
+      "mount": 20
+    },
+    {
+      "level": 3,
+      "name": "Silver",
+      "mount": 20
+    },
+    {
+      "level": 4,
+      "name": "Gold",
+      "mount": 20
+    },
+    {
+      "level": 5,
+      "name": "Platinum",
+      "mount": 20
+    },
+    {
+      "level": 6,
+      "name": "Diamond",
+      "mount": 20
+    },
+    {
+      "level": 7,
+      "name": "Master",
+      "mount": 20
+    },
+    {
+      "level": 8,
+      "name": "Grand Master",
+      "mount": 20
+    },
+    {
+      "level": 9,
+      "name": "Lord",
+      "mount": 20
+    },
+    {
+      "level": 10,
+      "name": "Legendary",
+      "mount": 20
+    }
+  ]
+}
