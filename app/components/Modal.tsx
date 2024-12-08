@@ -45,13 +45,13 @@ const Modal: React.FC<ModalProps> = ({ show, onContinue, onExit }) => {
           <Link
             href="/#"
             onClick={() => onExit(score)}
-            className="flex-[50%] w-full flex justify-center items-center space-x-2 bg-gradient-to-b from-[#DD523A] to-[#C24934] shadow-[0px_4px_0px_0px_#AB402D] text-white px-[15px] py-[10px] rounded-[10px] font-bold"
+            className="flex-[50%] w-full flex justify-center items-center space-x-2 bg-[#ffa4d5] shadow-[0px_4px_0px_0px_#AB402D] text-white px-[15px] py-[10px] rounded-[10px] font-bold"
           >
             Quit
           </Link>
           <button
             onClick={() => onContinue(score)}
-            className="flex-[50%] flex items-center justify-center space-x-2 bg-gradient-to-b from-[#FA9B0A] to-[#EB6D13] shadow-[0px_4px_0px_0px_#DC6E09] text-white px-[15px] py-[10px] rounded-[10px]"
+            className="flex-[50%] flex items-center justify-center space-x-2 bg-[#d40072] shadow-[0px_4px_0px_0px_#DC6E09] text-white px-[15px] py-[10px] rounded-[10px]"
           >
             <Image src="/play.png" width={17} height={17} alt="playIcon" />
             <p className="mr-[7px]">Play again</p>

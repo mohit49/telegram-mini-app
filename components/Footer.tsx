@@ -25,8 +25,8 @@ export default function Footer() {
   const score = _.last(rounds)?.score || 0;
   const best = _.maxBy(rounds, "score")?.score || 0;
   return (
-    <footer className="w-full h-[184px]  bg-[#8F3F00] relative rounded-b-lg">
-      <div className="bg-[#FFAA1F] border-y-4 relative border-[#DC6E09] h-8">
+    <footer className="w-full h-[184px]  bg-[#e8007d] relative rounded-b-lg">
+      <div className="bg-[#ffa4d5] border-y-4 relative border-[#e8007d] h-8">
         <motion.div
           style={{
             backgroundImage: `linear-gradient(

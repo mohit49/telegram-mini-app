@@ -51,6 +51,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const [pulses, setPulses] = useState([]);
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
+  const [openGame, setOpenGame] = useState(false);
 
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
@@ -196,6 +197,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     }
   }, [profit, dispatch]);
 
+
   return (
 
     <>
@@ -209,8 +211,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    </div>
 <div className="h-[60vh] overflow-scroll">
    <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={games} alt="Logo" />
+    <div className="w-[50%]"  >
+  <Link   href={`/flappygame`}> <Image className="h-[auto] w-[100%]" src={games} alt="Logo" /></Link> 
 
     </div>
     <div className="w-[50%]">
@@ -258,7 +260,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    </div>
    </div>
 
-   <div className="flex justify-center absolute left-[00px] bottom-[0px] z-[100] w-[calc(100%)] bg-white py-3 px-4 ">
+   <div className="flex justify-center absolute left-[00px] bottom-[0px] z-[30] w-[calc(100%)] bg-white py-3 px-4 ">
         <div className="flex flex-row gap-8 items-center justify-between w-[100%] ">
         <Link href={`/`}>
             <div
@@ -301,6 +303,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
           </Link>
         </div>
       </div>
+    
     </>
   );
 };

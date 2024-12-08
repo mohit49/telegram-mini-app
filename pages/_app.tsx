@@ -21,15 +21,15 @@ const AppWrapper = ({ Component, pageProps }: any) => {
   const isLoaded = useSelector((x: any) => x.TaskReducer.isLoaded);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const { userAgent } = window.navigator;
-    setIsMobile(userAgent.includes("Mobi"));
-    const func = async () => {
-      const { data } = await axios.get("/tasks");
-      dispatch(setTasks(data));
-    };
-    func();
-  }, []);
+ // useEffect(() => {
+ //   const { userAgent } = window.navigator;
+ //   setIsMobile(userAgent.includes("Mobi"));
+//    const func = async () => {
+ //     const { data } = await axios.get("/tasks");
+  //    dispatch(setTasks(data));
+ //   };
+ //   func();
+//  }, []);
 
   // return isMobile ? (
   //   !isLoaded ? (
