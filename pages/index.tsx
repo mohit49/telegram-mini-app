@@ -16,6 +16,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import announcmnt from "@/public/announcment.png"
 import games from "@/public/gamebg.png"
+import flappy from "@/public/flppy.png"
 import funGames from "@/public/fungames.png"
 import gm2 from "@/public/gamebg-card.png"
 import gm3 from "@/public/raceing.png"
@@ -212,7 +213,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 <div className="h-[60vh] overflow-scroll">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
-  <Link   href={`/flappygame`}> <Image className="h-[auto] w-[100%]" src={games} alt="Logo" /></Link> 
+  <Link   href={`/flappygame`}> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
 
     </div>
     <div className="w-[50%]">
