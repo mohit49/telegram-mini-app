@@ -221,7 +221,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
-<div className="h-[74vh] overflow-scroll">
+<div className="h-[auto]">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
   <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 

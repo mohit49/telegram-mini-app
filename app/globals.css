@@ -195,6 +195,8 @@ body {
   flex-direction: column;
   height: 100%;
   background: white;
+  overflow-y: auto;
+  padding-bottom: 10vh;
 }
 
 .text-base, .text-xs {
