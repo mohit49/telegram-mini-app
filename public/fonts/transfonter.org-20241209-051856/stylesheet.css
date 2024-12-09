@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Regular.woff2') format('woff2'),
+        url('AgletSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-BlackItalic.woff2') format('woff2'),
+        url('AgletSans-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Black.woff2') format('woff2'),
+        url('AgletSans-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-BoldItalic.woff2') format('woff2'),
+        url('AgletSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Bold.woff2') format('woff2'),
+        url('AgletSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-ExtraLight.woff2') format('woff2'),
+        url('AgletSans-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Italic.woff2') format('woff2'),
+        url('AgletSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Light.woff2') format('woff2'),
+        url('AgletSans-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-ExtraLightItalic.woff2') format('woff2'),
+        url('AgletSans-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-LightItalic.woff2') format('woff2'),
+        url('AgletSans-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Semibold.woff2') format('woff2'),
+        url('AgletSans-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-UltraItalic.woff2') format('woff2'),
+        url('AgletSans-UltraItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-SemiboldItalic.woff2') format('woff2'),
+        url('AgletSans-SemiboldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aglet Sans';
+    src: url('AgletSans-Ultra.woff2') format('woff2'),
+        url('AgletSans-Ultra.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

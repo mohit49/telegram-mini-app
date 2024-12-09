@@ -21,8 +21,19 @@ import funGames from "@/public/fungames.png"
 import gm2 from "@/public/gamebg-card.png"
 import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
-import { EarnIcon, GamePad, ViewIcon } from "@/utils/icons";
+import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, DepositeIcon, Withdraw } from "@/utils/icons";
 import { fill } from "lodash";
+import { Button } from "@/components/ui/button"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 interface Game {
   level: number;
   name: string;
@@ -206,14 +217,14 @@ const Index: React.FC<IndexProps> = ({ data }) => {
        <div>
         
        </div>
-   <div className="flex-row flex justify-around py-8">
-    <p>  <Image className="h-[30px] w-[40px]" src={announcmnt} alt="Logo" /></p><p>mohit_sh earn        3,500 in Racing</p>
+   <div className="flex-row flex justify-around p-3 h-[6vh]">
+    <p>  <Image className="h-[30px] w-[40px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[30px] w-[40px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
-<div className="h-[60vh] overflow-scroll">
+<div className="h-[75vh] overflow-scroll">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
-  <Link   href={`/flappygame`}> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
+  <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
 
     </div>
     <div className="w-[50%]">
@@ -231,26 +242,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
     </div>
    </div>
-   <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={games} alt="Logo" />
 
-    </div>
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
 
-    </div>
-   </div>
-   <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
-
-    </div>
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
-
-    </div>
-   </div>
 
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[100%]">
@@ -259,9 +252,94 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     </div>
    
    </div>
-   </div>
+     <Drawer>
+      <DrawerTrigger asChild>
+        <Button className="deposite  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposite / Withdraw</span></Button>
+      </DrawerTrigger>
+      <DrawerContent>
+     <div className="flex flex-row justify-center ">
+     <Drawer>
+     <DrawerTrigger className="text-left flex flex-row gap-4 p-4 items-center">
+      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
+      <div className="content">
+    
+    
+      <h2 className="text-[28px] font-bold text-[#000000] font-bold">Deposit</h2>
+      <p className="text-[14px] text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
+    
+  
+       
+      </div>
+      </DrawerTrigger>
+      <DrawerContent >
+        <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4">
+        <div className="ico w-[70px]"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
+        <h2 className="text-[30px] font-bold">Deposite</h2>
+        <div className="bg-[#ffa4d5] w-[200px] h-[200px] m-8"><QrCode/></div>
+        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
+         <div className="text-left font-bold"> <h4>Address</h4>
+         <p>0Q0TM...284ht</p></div>
+         <div className="font-bold"><CopyIcon/></div>
+        </div>
+        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
+         <div className="text-left font-bold"> <h4>Address</h4>
+         <p>0Q0TM...284ht</p></div>
+         <div className="font-bold"><CopyIcon/></div>
+        </div>
+        </div>
+     <br/>
+     <br/>
+        </DrawerContent>
+        </Drawer>
+     </div>
+     <hr/>
+     <div className="flex flex-row justify-center gap-4 p-4 items-center">
+      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><Withdraw/></span></div>
+      <div className="content">
+        <h2 className="text-[28px] font-bold text-[#000000]">Withdraw</h2>
+        <p className="text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
+      </div>
+     </div>
+      </DrawerContent>
+    </Drawer>
 
-   <div className="flex justify-center absolute left-[00px] bottom-[0px] z-[30] w-[calc(100%)] bg-white py-3 px-4 ">
+    <div className="p-4">
+      <h2 className="text-[28px] font-bold">Live Stats</h2>
+      <div className="board-con bg-[#f5f5f5] p-[10px] rounded-[10px]">
+      <div className="flex flex-row justify-between mb-0 py-3 ">
+            <div className="flex flex-row items-center gap-2">
+            😊
+              <p className="text-[#000000] font-bold">Mohit_12345</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-[#000000] font-bold ">Dicing</p>.<p  className="text-[#358103] w-[90px] text-right">600</p>
+            </div>
+          </div>
+          <hr/>
+          <div className="flex flex-row justify-between mb-0 py-1">
+            <div className="flex flex-row items-center gap-2">
+            😊
+              <p className="text-[#000000] font-bold">Mohit_12345</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#358103] w-[90px] text-right">6</p>
+            </div>
+          </div>
+<hr/>
+          <div className="flex flex-row justify-between mb-0 py-1">
+            <div className="flex flex-row items-center gap-2">
+            😊
+              <p className="text-[#000000] font-bold">Mohit_12345</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#ff0505] w-[90px] text-right">-6</p>
+            </div>
+          </div>
+      </div>
+    </div>
+   </div>
+ 
+   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)] h-[10vh] bg-white py-3 px-4 border-t bg-[#f5f5f5] ">
         <div className="flex flex-row gap-8 items-center justify-between w-[100%] ">
         <Link href={`/`}>
             <div
@@ -273,7 +351,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <GamePad/>
-              <div className="text-center text-[20px]">GAMES</div>
+              <div className="text-center text-[16px]">GAMES</div>
             </div>
           </Link>
           <Link href={`/`}>
@@ -286,7 +364,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <ViewIcon/>
-              <div className="text-center text-[20px]">PREDICT</div>
+              <div className="text-center text-[16px]">LEADERBOARD.</div>
             </div>
           </Link>
           <Link href={`/`}>
@@ -299,7 +377,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <EarnIcon/>
-              <div className="text-center text-[20px]">EARN</div>
+              <div className="text-center text-[16px]">EARN</div>
             </div>
           </Link>
         </div>
