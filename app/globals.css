@@ -130,7 +130,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+.shadowtoonButton {
+  box-shadow: 10px 10px;
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

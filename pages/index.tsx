@@ -21,6 +21,8 @@ import funGames from "@/public/fungames.png"
 import gm2 from "@/public/gamebg-card.png"
 import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
+import userImg from "@/public/USER.png"
+import shareHand from "@/public/share-hand.png"
 import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
 import { fill } from "lodash";
 import { Button } from "@/components/ui/button"
@@ -390,7 +392,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               <div className="text-center text-[13px] font-bold text-[#000000] m-0">LEADERBOARD</div>
             </div>
           </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
+        
             <div
               className={
                 "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
@@ -399,10 +401,60 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   : "text-[#A4A4A4]")
               }
             >
-             <EarnIcon/>
-              <div className="text-center text-[13px] font-bold text-[#000000] m-0">EARN</div>
+          
+              <div className="text-center text-[13px] font-bold text-[#000000] m-0"> 
+              <Drawer>
+     <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
+     <EarnIcon/>
+     Earn
+      </DrawerTrigger>
+      <DrawerContent >
+       <Image src={shareHand} alt="share image"/>
+       <div className="text-center px-3 pb-4 m-auto">
+       <h3 className="text-[45px] font-bold mt-[20px]">Invite Friends!</h3>
+   <p className="w-[90%] text-[20px] m-auto mb-5 font-bold">
+   So they can dive into the best game experience with you.</p>
+   <Button className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
+
+   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
+    <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
+   </div>
+
+   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
+    <div className="flex flex-row justify-between">
+    <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
+    </div>
+      <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
+<div className="w-[20%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+<div className="w-[20%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+<div className="w-[20%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+<div className="w-[20%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+   </div>
+   </div>
+ 
+       </div>
+ 
+        </DrawerContent>
+        </Drawer>
+             </div>
             </div>
-          </Link>
+         
         </div>
       </div>
     
