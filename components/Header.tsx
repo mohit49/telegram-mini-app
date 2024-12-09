@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     setIsActive((prevState) => !prevState);
   };
   return (
-    <header className="w-full bg-[#ffa4d5] py-0 px-0 m-0 z-[35] h-[8vh]">
+    <header className="w-full bg-[#ffa4d5] py-0 px-0 m-0 z-[35]">
       <div className="relative p-0 m-0 flex flex-row py-3 px-3 justify-between items-center">
         {/* Logo Section */}
         <div className="logo w-[60px]">

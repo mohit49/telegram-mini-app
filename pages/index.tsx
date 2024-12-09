@@ -217,9 +217,9 @@ const Index: React.FC<IndexProps> = ({ data }) => {
        <div>
         
        </div>
-   <div className="flex-row flex justify-around p-3 h-[8vh]">
-    <p>  <Image className="h-[30px] w-[40px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
-    <p>  <Image className="h-[30px] w-[40px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
+   <div className="flex-row flex justify-around p-2 h-[6vh]">
+    <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
+    <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
 <div className="h-[75vh] overflow-scroll">
    <div className="games gap-3 px-3 flex flex-row mt-3">
