@@ -22,7 +22,7 @@ const Header: React.FC = () => {
         {/* Account Section */}
         <div className="w-auto flex flex-row gap-3 items-center">
           <p className="text-[20px] font-medium">$0</p>
-          <LocIcon />
+         
           <div
             className="flex flex-row items-center gap-2"
             onClick={toggleClass}

@@ -262,6 +262,9 @@ button {
   font-weight: 700;
   
 }
+.svg-icons.active-menu svg {
+ fill: #ffa4d5 !important;
+}
 
 @layer base {
   :root {

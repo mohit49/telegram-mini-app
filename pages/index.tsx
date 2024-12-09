@@ -16,12 +16,12 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import announcmnt from "@/public/announcment.png"
 import games from "@/public/gamebg.png"
-import flappy from "@/public/flppy.png"
+import flappy from "@/public/flappy-bird.png"
 import funGames from "@/public/fungames.png"
 import gm2 from "@/public/gamebg-card.png"
 import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
-import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, DepositeIcon, Withdraw } from "@/utils/icons";
+import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
 import { fill } from "lodash";
 import { Button } from "@/components/ui/button"
 import {
@@ -221,7 +221,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
-<div className="h-[75vh] overflow-scroll">
+<div className="h-[74vh] overflow-scroll">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
   <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
@@ -254,7 +254,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    </div>
      <Drawer>
       <DrawerTrigger asChild>
-        <Button className="deposite  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposite / Withdraw</span></Button>
+        <Button className="deposit  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposit / Withdraw</span></Button>
       </DrawerTrigger>
       <DrawerContent>
      <div className="flex flex-row justify-center ">
@@ -272,9 +272,9 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       </div>
       </DrawerTrigger>
       <DrawerContent >
-        <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4">
-        <div className="ico w-[70px]"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
-        <h2 className="text-[30px] font-bold">Deposite</h2>
+        <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4 pt-5">
+        <div className="ico w-[70px] m-auto text-center flex justify-center items-center"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
+        <h2 className="text-[30px] font-bold">Deposit</h2>
         <div className="bg-[#ffa4d5] w-[200px] h-[200px] m-8"><QrCode/></div>
         <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
          <div className="text-left font-bold"> <h4>Address</h4>
@@ -339,45 +339,68 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     </div>
    </div>
  
-   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)] h-[10vh] bg-white py-3 px-4 border-t bg-[#f5f5f5] ">
-        <div className="flex flex-row gap-8 items-center justify-between w-[100%] ">
-        <Link href={`/`}>
+   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-3 px-0 border-t bg-[#f5f5f5] ">
+        <div className="flex flex-row gap- items-center justify-around w-[100%] items-end ">
+        <Link href={`/`} className="flex flex-col justify-center active-menu">
             <div
               className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                "gamePad flex flex-col justify-between space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
                 (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
-             <GamePad/>
-              <div className="text-center text-[16px]">GAMES</div>
+              <div className={(router.pathname === "/"
+                  ? "active-menu svg-icons mt-[-3px]"
+                  : "")}>
+                     <GamePad />
+                  </div>
+              
+            
+             <div className={"text-center text-[13px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
+                  ? "text-[#ffa4d5]"
+                  : "text-[#000000]")}>GAMES</div>
             </div>
           </Link>
-          <Link href={`/`}>
+          <Link href={`/`}  className="flex flex-col justify-between">
             <div
               className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
+                (router.pathname === "/"
+                  ? "text-[#00B2FF]"
+                  : "text-[#A4A4A4]")
+              }
+            >
+             <ShareIcon/>
+              <div className={"text-center text-[13px] font-bold text-[#000000] m-0" + (router.pathname === "/"
+                  ? "text-[#00B2FF]"
+                  : "text-[#A4A4A4]")}>SHARE</div>
+            </div>
+          </Link>
+          <Link href={`/`}  className="flex flex-col justify-between">
+            <div
+              className={
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
                 (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
              <ViewIcon/>
-              <div className="text-center text-[16px]">LEADERBOARD.</div>
+              <div className="text-center text-[13px] font-bold text-[#000000] m-0">LEADERBOARD</div>
             </div>
           </Link>
-          <Link href={`/`}>
+          <Link href={`/`}  className="flex flex-col justify-between">
             <div
               className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
                 (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
               }
             >
              <EarnIcon/>
-              <div className="text-center text-[16px]">EARN</div>
+              <div className="text-center text-[13px] font-bold text-[#000000] m-0">EARN</div>
             </div>
           </Link>
         </div>
