@@ -50,6 +50,7 @@ interface IndexProps {
   data: Data;
 }
 
+
 const Index: React.FC<IndexProps> = ({ data }) => {
   const dispatch = useDispatch();
   const user = useSelector((x: any) => x.TaskReducer.user);
@@ -66,7 +67,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
   const [openGame, setOpenGame] = useState(false);
-
+  const [teleUser, setTeleUser] = useState();
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
     return item ? item.mount : 0;
@@ -210,14 +211,49 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       return () => clearInterval(interval);
     }
   }, [profit, dispatch]);
+  useEffect(() => {
+    // Dynamically load the Telegram Web App script
+    const loadTelegramScript = () => {
+        const script = document.createElement("script");
+        script.src = "https://telegram.org/js/telegram-web-app.js";
+        script.async = true;
+        script.onload = initializeTelegram;
+        script.onerror = () => {
+            console.error("Failed to load Telegram Web App script.");
+        };
+        document.body.appendChild(script);
+    };
 
+    // Initialize Telegram Web App and fetch user info
+    const initializeTelegram = () => {
+        if (window?.Telegram) {
+            const telegram = window?.Telegram?.WebApp;
+
+            // Notify Telegram that the Mini App is ready
+            telegram.ready();
+
+            // Get user information
+            const user = telegram.initDataUnsafe?.user || null;
+            setTeleUser(user);
+        } else {
+            console.error("Telegram Web App is not available.");
+        }
+    };
+
+    // Check if script is already loaded; if not, load it
+    if (!window?.Telegram) {
+        loadTelegramScript();
+    } else {
+        initializeTelegram();
+    }
+}, []);
 
   return (
 
     <>
        <Header/>
-       <div>
-        
+       <div className="flex justify-center flex-row py-4">
+      {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-bold">Hi!  {teleUser?.username}</p>)}
        </div>
    <div className="flex-row flex justify-around p-2 h-[6vh]">
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
@@ -306,6 +342,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     </Drawer>
 
     <div className="p-4">
+
       <h2 className="text-[28px] font-bold">Live Stats</h2>
       <div className="board-con bg-[#f5f5f5] p-[10px] rounded-[10px]">
       <div className="flex flex-row justify-between mb-0 py-3 ">
