@@ -26,6 +26,7 @@ import shareHand from "@/public/share-hand.png"
 import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
 import { fill } from "lodash";
 import { Button } from "@/components/ui/button"
+import { useSnackbar } from "notistack";
 import {
   Drawer,
   DrawerClose,
@@ -52,6 +53,7 @@ interface IndexProps {
 
 
 const Index: React.FC<IndexProps> = ({ data }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const user = useSelector((x: any) => x.TaskReducer.user);
   const [count, setCount] = useState<number>(0);
@@ -247,13 +249,34 @@ const Index: React.FC<IndexProps> = ({ data }) => {
         initializeTelegram();
     }
 }, []);
+const handleInviteClick = async () => {
+  // Generate the invite link
+  const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋
+\n
+Play our games, invite your friends and earn $DOODLE! 👏\n\n
+Got some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\n
+Start your journey to join the $DOODLE gang now 👇\n\n
+https://t.me/DoodleStudio_bot?start=${teleUser?.username}
+`;
+  console.log(inviteLink);
 
+  // Show the invite link in a snackbar or modal
+  enqueueSnackbar("Invite link copied to clipboard!", { variant: "success" });
+
+  // Copy the link to the clipboard
+  const shareLink = `https://t.me/share/url?url=${encodeURIComponent(
+    inviteLink
+  )}`;
+
+  // Open the share link in a new window
+  window.open(shareLink, "_blank");
+};
   return (
 
     <>
        <Header/>
        <div className="flex justify-center flex-row py-4">
-      {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-bold">Hi!  {teleUser?.username}</p>)}
+      {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-b">Hi!  {teleUser?.username}</p>)}
        </div>
    <div className="flex-row flex justify-around p-2 h-[6vh]">
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
@@ -451,7 +474,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
        <h3 className="text-[45px] font-bold mt-[20px]">Invite Friends!</h3>
    <p className="w-[90%] text-[20px] m-auto mb-5 font-bold">
    So they can dive into the best game experience with you.</p>
-   <Button className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
+   <Button onClick={handleInviteClick} className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
 
    <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
     <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
@@ -462,22 +485,18 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
     </div>
       <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
-<div className="w-[20%] flex flex-col gap-2">
+<div className="w-[27%] flex flex-col gap-2">
 <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
 <p className="font-bold leading-[100%] text-[13px]">Max
 Suryavansh</p>
 </div>
-<div className="w-[20%] flex flex-col gap-2">
+
+<div className="w-[27%] flex flex-col gap-2">
 <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
 <p className="font-bold leading-[100%] text-[13px]">Max
 Suryavansh</p>
 </div>
-<div className="w-[20%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-<div className="w-[20%] flex flex-col gap-2">
+<div className="w-[27%] flex flex-col gap-2">
 <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
 <p className="font-bold leading-[100%] text-[13px]">Max
 Suryavansh</p>
