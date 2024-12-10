@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "node server.js",
         "build": "next build",
-        "start": "next start",
+        "start": "NODE_ENV=production node server.js",
         "lint": "next lint"
     },
     "dependencies": {
@@ -28,12 +28,15 @@
         "@walletconnect/client": "^1.8.0",
         "@walletconnect/web3-provider": "^1.8.0",
         "axios": "^1.6.8",
+        "body-parser": "^1.20.3",
         "class-variance-authority": "^0.7.1",
+        "express": "^4.21.2",
         "framer-motion": "^11.3.24",
         "lodash": "^4.17.21",
         "lucide-react": "^0.438.0",
         "mongodb": "^6.8.0",
-        "next": "^14.2.6",
+        "mongoose": "^8.8.4",
+        "next": "^14.2.20",
         "notistack": "^3.0.1",
         "pg": "^8.12.0",
         "react": "^18",
