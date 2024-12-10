@@ -50,6 +50,15 @@ interface Data {
 interface IndexProps {
   data: Data;
 }
+declare global {
+  interface Window {
+      Telegram: any;  // or more specific type if you know the shape
+  }
+}
+interface TeleUser {
+  username: string;
+  // other properties if needed
+}
 
 
 const Index: React.FC<IndexProps> = ({ data }) => {
@@ -69,7 +78,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
   const [openGame, setOpenGame] = useState(false);
-  const [teleUser, setTeleUser] = useState();
+
+  const [teleUser, setTeleUser] = useState<TeleUser>();
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
     return item ? item.mount : 0;
