@@ -42,24 +42,30 @@ app.post('/api/referrals', async (req, res) => {
   }
 });
 
-app.post('/api/telegram-user', async (req, res) => {
-    const { telegram_id, first_name, last_name, username, language_code, profile_photo_url } = req.body;
+
+// telegram user api
+
+app.post('/telegram-user', async (req, res) => {
+  console.log("post-hp")
+    const { id, first_name, last_name, username,  photo_url } = req.body;
 
     // Check if the user already exists in the database
-    const existingUser = await telegramUser.findOne({ telegram_id });
+    const existingUser = await telegramUser.findOne({ id });
 
     if (existingUser) {
+      console.log("already")
         return res.status(400).json({ message: 'User already exists' });
+      
     }
 
     // Create a new user document
     const newUser = new telegramUser({
-        telegram_id,
+      id,
         first_name,
         last_name,
         username,
-        language_code,
-        profile_photo_url
+       
+        photo_url
     });
 
     try {
@@ -71,6 +77,40 @@ app.post('/api/telegram-user', async (req, res) => {
         return res.status(500).json({ message: 'Error saving user' });
     }
 });
+
+
+// Route to get all Telegram users
+app.get('/telegram-user', async (req, res) => {
+  console.log("GET /telegram-user");
+  try {
+    const users = await telegramUser.find();
+    return res.status(200).json(users);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error retrieving users' });
+  }
+});
+
+// Route to get a single Telegram user by ID
+app.get('/telegram-user/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(`GET /telegram-user/${id}`);
+  try {
+    const user = await telegramUser.findOne({ id });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error retrieving user' });
+  }
+});
+
+//telegram user api end
+
+
+
 
 // Function to save the referral to the database
 async function saveReferralToDatabase(userId, referrerId) {

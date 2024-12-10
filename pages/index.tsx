@@ -247,14 +247,22 @@ const Index: React.FC<IndexProps> = ({ data }) => {
             // Get user information
             const user = telegram.initDataUnsafe?.user || null;
             setTeleUser(user);
-            const sendUserData = async (user) => {
+            if(user){
+           const userData =  {"id":user.id,
+              "first_name":user.first_name,
+              "last_name":user.last_name,
+              "username":user.username,
+              "photo_url":user.photo_url}
+            const sendUserData = async (userData) => {
               try {
-                const response = await axios.post('http://localhost:5000/api/telegram-user', user);
+                const response = await axios.post('https://app.mazzl.ae/api/telegram-user', userData);
                 console.log('User data saved:', response.data);
               } catch (error) {
                 console.error('Error saving user data:', error);
               }
             };
+            sendUserData(userData);
+          }
         } else {
             console.error("Telegram Web App is not available.");
         }
@@ -273,7 +281,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <>
        <Header/>
        <div className="flex justify-center flex-row py-4">
-        {JSON.stringify(teleUser)}
+      <p className="w-[90%] overflow-scroll">  {JSON.stringify(teleUser)}</p>
       {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-b">Hi!  {teleUser?.username}</p>)}
        </div>
    <div className="flex-row flex justify-around p-2 h-[6vh]">
