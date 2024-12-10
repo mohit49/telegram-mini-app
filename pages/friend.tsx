@@ -5,7 +5,11 @@ import { getBonus } from "@/app/lib/api";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import shareHand from "@/public/share-hand.png"
 import Topheader from "./Topheader";
+import userImg from "@/public/USER.png"
+import { Button } from "@/components/ui/button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 interface Item {
@@ -131,8 +135,13 @@ function Friend() {
   
   const handleInviteClick = async () => {
     // Generate the invite link
-    const inviteLink = `https://t.me/Chirpley_Bot?start=${user}\nPlay with me, become cryptoexchange CEO and get a token airdrop`;
-    console.log(inviteLink);
+    const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋
+    \n
+    Play our games, invite your friends and earn $DOODLE! 👏\n\n
+    Got some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\n
+    Start your journey to join the $DOODLE gang now 👇\n\n
+    https://t.me/DoodleStudio_bot?start=${user}
+    `;
 
     // Show the invite link in a snackbar or modal
     enqueueSnackbar("Invite link copied to clipboard!", { variant: "success" });
@@ -155,84 +164,17 @@ function Friend() {
 
   return (
     <>
-      <div className="flex flex-col gap-5 px-5 pt-[23px] pb-[150px] rounded-t-3xl border-t border-[#DFDCD5] bg-gradient-to-b from-[#FFF3D8] to-[#F8DFA6] flex-1 h-0 overflow-auto">
-        <Topheader />
-        <div className="text-[30px] text-center text-black font-semibold">
-          Invite Friends
-        </div>
-        <div className="font-medium text-[16px] text-center text-[#DD523A]">
-          You and your friend will receive bonuses
-        </div>
-        <div className="flex justify-between items-center bg-white border border-[#E3E3E3] rounded-[10px] p-[10px] space-x-5">
-          <div className="flex items-center gap-[10px] ml-8">
-            <img
-              src="/images/icon-friend.png"
-              className="w-[56px] h-[56px]"
-              alt="gift"
-            ></img>
-            <div className="text-white text-sm font-normal flex flex-col space-y-2 ml-10">
-              <p className="font-semibold text-[14px] text-[#282828]">
-                Invite a friend
-              </p>
-              <div className="flex items-center space-x-2">
-                <img
-                  src="/images/coin.png"
-                  alt="dollar"
-                  className="w-5 h-5"
-                ></img>
-                <div className="font-semibold text-[16px] text-[#282828]">
-                  +{levelbonus[0]?.friend_value ?? 0}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between items-center bg-white border border-[#E3E3E3] rounded-[10px] p-[10px] space-x-5">
-          <div className="flex items-center gap-[10px] ml-8">
-            <img
-              src="/images/icon-telegram.png"
-              className="w-[56px] h-[56px]"
-              alt="gift"
-            ></img>
-            <div className="text-white text-sm flex flex-col space-y-2 ml-10">
-              <p className="font-semibold text-[14px] text-[#282828]">
-                Invite a friend with Telegram Premium
-              </p>
-              <div className="flex items-center space-x-2">
-                <img
-                  src="/images/coin.png"
-                  alt="dollar"
-                  className="w-5 h-5"
-                ></img>
-                <div className="font-semibold text-[16px] text-[#282828]">
-                  +{levelbonus[0]?.premium_value ?? 0}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          className="py-3 bg-gradient-to-b from-[#FFAB07] to-[#E76116] shadow-[0px_2px_0px_0px_#DC6E09] border border-[#FF8A00] text-white rounded-[10px] text-center"
-          onClick={handleMoreBonusesClick}
-        >
-          More Bonuses
-        </button>
-        <div className="font-semibold text-[#282828] mt-[43px] text-lg h-[30px] flex justify-between px-5">
-          <span className="flex items-center">List of your friends</span>
-          <button onClick={fetchData}>
-            <FontAwesomeIcon
-              icon={faArrowsRotate}
-              className="text-[30px] text-[#DD523A]"
-            />
-          </button>
-        </div>
-        {items.length === 0 ? (
+ <Image src={shareHand} alt="share image"/>
+ <div className="text-center px-3 pb-4 m-auto">
+      
+
+   {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center">
             <div className="font-medium text-[14px] text-[#DD523A] mt-3 mb-[25px]">
               You haven&apos;t invited anyone yet
             </div>
             <button
-              className="py-3 px-5 bg-gradient-to-b from-[#FFAB07] to-[#E76116] shadow-[0px_2px_0px_0px_#DC6E09] border border-[#FF8A00] text-white rounded-[10px] text-center"
+           className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton"
               onClick={handleInviteClick}
             >
               Invite a friend
@@ -275,86 +217,52 @@ function Friend() {
               </>
             ))}
             <div className="flex justify-center">
-              <button
-                className="py-3 px-5 bg-gradient-to-b from-[#FFAB07] to-[#E76116] shadow-[0px_2px_0px_0px_#DC6E09] border border-[#FF8A00] text-white rounded-[10px] text-center"
-                onClick={handleInviteClick}
-              >
-                Invite a friend
-              </button>
+            <Button onClick={handleInviteClick} className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
+           
             </div>
           </div>
         )}
-      </div>
-      <div className="flex justify-center absolute left-[20px] bottom-[20px] z-[100] w-[calc(100%-40px)]">
-        <div className="grid grid-cols-5 justify-center mt-auto shadow-[0px_4px_0px_0px_#CACACA] bg-white py-[10px] px-[9px] gap-[6px] w-full font-medium text-[12px] rounded-[25px]">
-          <Link href={`/mine`}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <img src="/images/footer-mine.png" />
-              <div className="text-center">Mine</div>
-            </div>
-          </Link>
-          <Link href={"/earn"}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/earn"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <img src="/images/footer-earn.png" />
-              <div>Earn</div>
-            </div>
-          </Link>
-          <Link href={`/?user=${user}`}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/" ? "text-[#00B2FF]" : "text-[#A4A4A4]")
-              }
-            >
-              <img
-                src="/images/footer-game.png"
-                className="mt-[-25px] w-[75px] h-[75px]"
-              />
-              <div>Game</div>
-            </div>
-          </Link>
-          <Link href={"/friend"}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/friend"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <img src="/images/footer-friend.png" />
-              <div>Friends</div>
-            </div>
-          </Link>
-          <Link href={"/account"}>
-            <div
-              className={
-                "flex flex-col justify-center space-y-1 text-xs h-[64px] text-center rounded-xl items-center " +
-                (router.pathname === "/account"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <img src="/images/footer-account.png" />
-              <div>Account</div>
-            </div>
-          </Link>
-        </div>
-      </div>
+     
+ 
+
+   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
+    <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
+   </div>
+
+   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
+    <div className="flex flex-row justify-between">
+    <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
+    </div>
+      <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
+<div className="w-[27%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+
+<div className="w-[27%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+<div className="w-[27%] flex flex-col gap-2">
+<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+<p className="font-bold leading-[100%] text-[13px]">Max
+Suryavansh</p>
+</div>
+   </div>
+   </div>
+ 
+       </div>
+
+       
+     
+  
+
+      
+     
+      
+    
     </>
   );
 }

@@ -37,6 +37,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+import Friend from "./friend";
 interface Game {
   level: number;
   name: string;
@@ -50,6 +51,7 @@ interface Data {
 interface IndexProps {
   data: Data;
 }
+
 declare global {
   interface Window {
       Telegram: any;  // or more specific type if you know the shape
@@ -59,7 +61,6 @@ interface TeleUser {
   username: string;
   // other properties if needed
 }
-
 
 const Index: React.FC<IndexProps> = ({ data }) => {
   const { enqueueSnackbar } = useSnackbar();
@@ -78,7 +79,6 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
   const [openGame, setOpenGame] = useState(false);
-
   const [teleUser, setTeleUser] = useState<TeleUser>();
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
@@ -259,28 +259,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
         initializeTelegram();
     }
 }, []);
-const handleInviteClick = async () => {
-  // Generate the invite link
-  const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋
-\n
-Play our games, invite your friends and earn $DOODLE! 👏\n\n
-Got some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\n
-Start your journey to join the $DOODLE gang now 👇\n\n
-https://t.me/DoodleStudio_bot?start=${teleUser?.username}
-`;
-  console.log(inviteLink);
 
-  // Show the invite link in a snackbar or modal
-  enqueueSnackbar("Invite link copied to clipboard!", { variant: "success" });
-
-  // Copy the link to the clipboard
-  const shareLink = `https://t.me/share/url?url=${encodeURIComponent(
-    inviteLink
-  )}`;
-
-  // Open the share link in a new window
-  window.open(shareLink, "_blank");
-};
   return (
 
     <>
@@ -479,43 +458,7 @@ https://t.me/DoodleStudio_bot?start=${teleUser?.username}
      Earn
       </DrawerTrigger>
       <DrawerContent >
-       <Image src={shareHand} alt="share image"/>
-       <div className="text-center px-3 pb-4 m-auto">
-       <h3 className="text-[45px] font-bold mt-[20px]">Invite Friends!</h3>
-   <p className="w-[90%] text-[20px] m-auto mb-5 font-bold">
-   So they can dive into the best game experience with you.</p>
-   <Button onClick={handleInviteClick} className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
-
-   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
-    <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
-   </div>
-
-   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
-    <div className="flex flex-row justify-between">
-    <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
-    </div>
-      <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
-<div className="w-[27%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-
-<div className="w-[27%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-<div className="w-[27%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-   </div>
-   </div>
- 
-       </div>
- 
+     <Friend/>
         </DrawerContent>
         </Drawer>
              </div>
