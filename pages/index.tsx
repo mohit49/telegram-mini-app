@@ -23,9 +23,10 @@ import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
 import userImg from "@/public/USER.png"
 import shareHand from "@/public/share-hand.png"
-import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
+import { EarnIcon, GamePad, ViewIcon, CopyIcon, QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
 import { fill } from "lodash";
 import { Button } from "@/components/ui/button"
+import ReferralSystem from '@/components/ReferralSystem'
 import {
   Drawer,
   DrawerClose,
@@ -66,6 +67,23 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
   const [openGame, setOpenGame] = useState(false);
+  const [initData, setInitData] = useState('')
+  const [userId, setUserId] = useState('')
+  const [startParam, setStartParam] = useState('')
+
+  useEffect(() => {
+    const initWebApp = async () => {
+      if (typeof window !== 'undefined') {
+        const WebApp = (await import('@twa-dev/sdk')).default;
+        WebApp.ready();
+        setInitData(WebApp.initData);
+        setUserId(WebApp.initDataUnsafe.user?.id.toString() || '');
+        setStartParam(WebApp.initDataUnsafe.start_param || '');
+      }
+    };
+
+    initWebApp();
+  }, [])
 
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
@@ -215,135 +233,135 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   return (
 
     <>
-       <Header/>
-       <div>
-        
-       </div>
-   <div className="flex-row flex justify-around p-2 h-[6vh]">
-    <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
-    <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
-   </div>
-<div className="h-[auto]">
-   <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]"  >
-  <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
+      <Header />
+      <div>
 
-    </div>
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
-
-    </div>
-   </div>
-   <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
-
-    </div>
-    <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
-
-    </div>
-   </div>
-
-
-
-   <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[100%]">
-    <Image className="h-[auto] w-[100%]" src={funGames} alt="Logo" />
-
-    </div>
-   
-   </div>
-     <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="deposit  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposit / Withdraw</span></Button>
-      </DrawerTrigger>
-      <DrawerContent>
-     <div className="flex flex-row justify-center ">
-     <Drawer>
-     <DrawerTrigger className="text-left flex flex-row gap-4 p-4 items-center">
-      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
-      <div className="content">
-    
-    
-      <h2 className="text-[28px] font-bold text-[#000000] font-bold">Deposit</h2>
-      <p className="text-[14px] text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
-    
-  
-       
       </div>
-      </DrawerTrigger>
-      <DrawerContent >
-        <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4 pt-5">
-        <div className="ico w-[70px] m-auto text-center flex justify-center items-center"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
-        <h2 className="text-[30px] font-bold">Deposit</h2>
-        <div className="bg-[#ffa4d5] w-[200px] h-[200px] m-8"><QrCode/></div>
-        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
-         <div className="text-left font-bold"> <h4>Address</h4>
-         <p>0Q0TM...284ht</p></div>
-         <div className="font-bold"><CopyIcon/></div>
+      <div className="flex-row flex justify-around p-2 h-[6vh]">
+        <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
+        <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
+      </div>
+      <div className="h-[auto]">
+        <div className="games gap-3 px-3 flex flex-row mt-3">
+          <div className="w-[50%]"  >
+            <Link href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link>
+
+          </div>
+          <div className="w-[50%]">
+            <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
+
+          </div>
         </div>
-        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
-         <div className="text-left font-bold"> <h4>Address</h4>
-         <p>0Q0TM...284ht</p></div>
-         <div className="font-bold"><CopyIcon/></div>
+        <div className="games gap-3 px-3 flex flex-row mt-3">
+          <div className="w-[50%]">
+            <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
+
+          </div>
+          <div className="w-[50%]">
+            <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
+
+          </div>
         </div>
+
+
+
+        <div className="games gap-3 px-3 flex flex-row mt-3">
+          <div className="w-[100%]">
+            <Image className="h-[auto] w-[100%]" src={funGames} alt="Logo" />
+
+          </div>
+
         </div>
-     <br/>
-     <br/>
-        </DrawerContent>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button className="deposit  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposit / Withdraw</span></Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <div className="flex flex-row justify-center ">
+              <Drawer>
+                <DrawerTrigger className="text-left flex flex-row gap-4 p-4 items-center">
+                  <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon /></span></div>
+                  <div className="content">
+
+
+                    <h2 className="text-[28px] font-bold text-[#000000] font-bold">Deposit</h2>
+                    <p className="text-[14px] text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
+
+
+
+                  </div>
+                </DrawerTrigger>
+                <DrawerContent >
+                  <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4 pt-5">
+                    <div className="ico w-[70px] m-auto text-center flex justify-center items-center"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon /></span></div>
+                    <h2 className="text-[30px] font-bold">Deposit</h2>
+                    <div className="bg-[#ffa4d5] w-[200px] h-[200px] m-8"><QrCode /></div>
+                    <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
+                      <div className="text-left font-bold"> <h4>Address</h4>
+                        <p>0Q0TM...284ht</p></div>
+                      <div className="font-bold"><CopyIcon /></div>
+                    </div>
+                    <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
+                      <div className="text-left font-bold"> <h4>Address</h4>
+                        <p>0Q0TM...284ht</p></div>
+                      <div className="font-bold"><CopyIcon /></div>
+                    </div>
+                  </div>
+                  <br />
+                  <br />
+                </DrawerContent>
+              </Drawer>
+            </div>
+            <hr />
+            <div className="flex flex-row justify-center gap-4 p-4 items-center">
+              <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><Withdraw /></span></div>
+              <div className="content">
+                <h2 className="text-[28px] font-bold text-[#000000]">Withdraw</h2>
+                <p className="text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
+              </div>
+            </div>
+          </DrawerContent>
         </Drawer>
-     </div>
-     <hr/>
-     <div className="flex flex-row justify-center gap-4 p-4 items-center">
-      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><Withdraw/></span></div>
-      <div className="content">
-        <h2 className="text-[28px] font-bold text-[#000000]">Withdraw</h2>
-        <p className="text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
-      </div>
-     </div>
-      </DrawerContent>
-    </Drawer>
 
-    <div className="p-4">
-      <h2 className="text-[28px] font-bold">Live Stats</h2>
-      <div className="board-con bg-[#f5f5f5] p-[10px] rounded-[10px]">
-      <div className="flex flex-row justify-between mb-0 py-3 ">
-            <div className="flex flex-row items-center gap-2">
-            😊
-              <p className="text-[#000000] font-bold">Mohit_12345</p>
+        <div className="p-4">
+          <h2 className="text-[28px] font-bold">Live Stats</h2>
+          <div className="board-con bg-[#f5f5f5] p-[10px] rounded-[10px]">
+            <div className="flex flex-row justify-between mb-0 py-3 ">
+              <div className="flex flex-row items-center gap-2">
+                😊
+                <p className="text-[#000000] font-bold">Mohit_12345</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#358103] w-[90px] text-right">600</p>
+              </div>
             </div>
-            <div className="flex flex-row items-center gap-2">
-              <p className="text-[#000000] font-bold ">Dicing</p>.<p  className="text-[#358103] w-[90px] text-right">600</p>
+            <hr />
+            <div className="flex flex-row justify-between mb-0 py-1">
+              <div className="flex flex-row items-center gap-2">
+                😊
+                <p className="text-[#000000] font-bold">Mohit_12345</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#358103] w-[90px] text-right">6</p>
+              </div>
+            </div>
+            <hr />
+            <div className="flex flex-row justify-between mb-0 py-1">
+              <div className="flex flex-row items-center gap-2">
+                😊
+                <p className="text-[#000000] font-bold">Mohit_12345</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#ff0505] w-[90px] text-right">-6</p>
+              </div>
             </div>
           </div>
-          <hr/>
-          <div className="flex flex-row justify-between mb-0 py-1">
-            <div className="flex flex-row items-center gap-2">
-            😊
-              <p className="text-[#000000] font-bold">Mohit_12345</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#358103] w-[90px] text-right">6</p>
-            </div>
-          </div>
-<hr/>
-          <div className="flex flex-row justify-between mb-0 py-1">
-            <div className="flex flex-row items-center gap-2">
-            😊
-              <p className="text-[#000000] font-bold">Mohit_12345</p>
-            </div>
-            <div className="flex flex-row items-center gap-2">
-              <p className="text-[#000000] font-bold ">Dicing</p>.<p className="text-[#ff0505] w-[90px] text-right">-6</p>
-            </div>
-          </div>
+        </div>
       </div>
-    </div>
-   </div>
- 
-   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-3 px-0 border-t bg-[#f5f5f5] ">
+
+      <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-3 px-0 border-t bg-[#f5f5f5] ">
         <div className="flex flex-row gap- items-center justify-around w-[100%] items-end ">
-        <Link href={`/`} className="flex flex-col justify-center active-menu">
+          <Link href={`/`} className="flex flex-col justify-center active-menu">
             <div
               className={
                 "gamePad flex flex-col justify-between space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
@@ -353,18 +371,18 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
               <div className={(router.pathname === "/"
-                  ? "active-menu svg-icons mt-[-3px]"
-                  : "")}>
-                     <GamePad />
-                  </div>
-              
-            
-             <div className={"text-center text-[13px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
-                  ? "text-[#ffa4d5]"
-                  : "text-[#000000]")}>GAMES</div>
+                ? "active-menu svg-icons mt-[-3px]"
+                : "")}>
+                <GamePad />
+              </div>
+
+
+              <div className={"text-center text-[13px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
+                ? "text-[#ffa4d5]"
+                : "text-[#000000]")}>GAMES</div>
             </div>
           </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
+          <Link href={`/`} className="flex flex-col justify-between">
             <div
               className={
                 "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
@@ -373,13 +391,13 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   : "text-[#A4A4A4]")
               }
             >
-             <ShareIcon/>
+              <ShareIcon />
               <div className={"text-center text-[13px] font-bold text-[#000000] m-0" + (router.pathname === "/"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")}>SHARE</div>
+                ? "text-[#00B2FF]"
+                : "text-[#A4A4A4]")}>SHARE</div>
             </div>
           </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
+          <Link href={`/`} className="flex flex-col justify-between">
             <div
               className={
                 "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
@@ -388,76 +406,75 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   : "text-[#A4A4A4]")
               }
             >
-             <ViewIcon/>
+              <ViewIcon />
               <div className="text-center text-[13px] font-bold text-[#000000] m-0">LEADERBOARD</div>
             </div>
           </Link>
-        
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-          
-              <div className="text-center text-[13px] font-bold text-[#000000] m-0"> 
+
+          <div
+            className={
+              "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
+              (router.pathname === "/mine"
+                ? "text-[#00B2FF]"
+                : "text-[#A4A4A4]")
+            }
+          >
+
+            <div className="text-center text-[13px] font-bold text-[#000000] m-0">
               <Drawer>
-     <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
-     <EarnIcon/>
-     Earn
-      </DrawerTrigger>
-      <DrawerContent >
-       <Image src={shareHand} alt="share image"/>
-       <div className="text-center px-3 pb-4 m-auto">
-       <h3 className="text-[45px] font-bold mt-[20px]">Invite Friends!</h3>
-   <p className="w-[90%] text-[20px] m-auto mb-5 font-bold">
-   So they can dive into the best game experience with you.</p>
-   <Button className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton">Share Link</Button>
+                <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
+                  <EarnIcon />
+                  Earn
+                </DrawerTrigger>
+                <DrawerContent >
+                  <Image src={shareHand} alt="share image" />
+                  <div className="text-center px-3 pb-4 m-auto">
+                    <h3 className="text-[45px] font-bold mt-[20px]">Invite Friends!</h3>
+                    <p className="w-[90%] text-[20px] m-auto mb-5 font-bold">
+                      So they can dive into the best game experience with you.</p>
+                    <ReferralSystem initData={initData} userId={userId} startParam={startParam} />
+                    <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
+                      <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
+                    </div>
 
-   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto border border-[#cccccc] flex flex-row justify-between">
-    <p className="font-bold">You earned</p><p className="font-bold">1500 $Doodle</p>
-   </div>
+                    <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
+                      <div className="flex flex-row justify-between">
+                        <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
+                      </div>
+                      <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
+                        <div className="w-[20%] flex flex-col gap-2">
+                          <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+                          <p className="font-bold leading-[100%] text-[13px]">Max
+                            Suryavansh</p>
+                        </div>
+                        <div className="w-[20%] flex flex-col gap-2">
+                          <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+                          <p className="font-bold leading-[100%] text-[13px]">Max
+                            Suryavansh</p>
+                        </div>
+                        <div className="w-[20%] flex flex-col gap-2">
+                          <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+                          <p className="font-bold leading-[100%] text-[13px]">Max
+                            Suryavansh</p>
+                        </div>
+                        <div className="w-[20%] flex flex-col gap-2">
+                          <Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
+                          <p className="font-bold leading-[100%] text-[13px]">Max
+                            Suryavansh</p>
+                        </div>
+                      </div>
+                    </div>
 
-   <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
-    <div className="flex flex-row justify-between">
-    <p className="font-bold">Referrals</p><p className="font-bold text-[#ffa4d5]">Show All</p>
-    </div>
-      <div className="flex flex-row items-center mt-5 gap-3 p-3 justify-between">
-<div className="w-[20%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-<div className="w-[20%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-<div className="w-[20%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-<div className="w-[20%] flex flex-col gap-2">
-<Image className="h-[auto] w-[100%]" src={userImg} alt="Logo" />
-<p className="font-bold leading-[100%] text-[13px]">Max
-Suryavansh</p>
-</div>
-   </div>
-   </div>
- 
-       </div>
- 
-        </DrawerContent>
-        </Drawer>
-             </div>
+                  </div>
+
+                </DrawerContent>
+              </Drawer>
             </div>
-         
+          </div>
+
         </div>
       </div>
-    
+
     </>
   );
 };
