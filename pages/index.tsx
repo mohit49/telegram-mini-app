@@ -62,30 +62,25 @@ interface TeleUser {
   // other properties if needed
 }
 
+interface UserData {
+  tele_id: number;      // Assuming `user.id` is a number
+  first_name: string;   // Assuming `user.first_name` is a string
+  last_name: string;    // Assuming `user.last_name` is a string
+  username: string;     // `user.username` can be a string, or an empty string if not available
+  photo_url?: string;   // `photo_url` can be a string or undefined if not available
+}
+
+
 const Index: React.FC<IndexProps> = ({ data }) => {
-  const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch();
-  const user = useSelector((x: any) => x.TaskReducer.user);
-  const [count, setCount] = useState<number>(0);
-  const [profit, setProfit] = useState<number>(0);
-  const [Games, setGames] = useState<Game[]>(data.games);
-  const [mount, setMount] = useState<number>(1000);
-  const [lvlcoin, setlvlcoin] = useState<number>(5000);
-  const [tap, settap] = useState<number>(1);
-  const [alert, setalert] = useState<number>(0);
-  const [showAnimation, setShowAnimation] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [pulses, setPulses] = useState([]);
+
+ 
   const router = useRouter();
-  const userFromQuery = router.query.user?.toString() || "";
-  const [openGame, setOpenGame] = useState(false);
+
+
   const [teleUser, setTeleUser] = useState<TeleUser>();
   const [params, setParams] = useState<any>()
   const [telegram, setTelegram] = useState();
-  const getMountBylevel = (level: number): number | number => {
-    const item = Games.find((item: Game) => item.level === level);
-    return item ? item.mount : 0;
-  };
+ 
 
   const defaultOption = {
     loop: true,
@@ -94,137 +89,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  const animsOption = {
-    ...defaultOption,
-    animationData: showAnimation ? eatAnim : idleAnim,
-  };
-
-  const handleChange = () => {
-    setShowAnimation(true);
-    setTimeout(() => {
-      setShowAnimation(false);
-    }, 500);
-  };
-  const getLevelInfo = () => {
-    switch (Math.floor(count / 20)) {
-      case 0:
-        return { text: "Rookie", number: 1, image: "/images/lvl-1-rookie.png" };
-      case 1:
-        return { text: "Bronze", number: 2, image: "/images/lvl-2-bronze.png" };
-      case 2:
-        return { text: "Silver", number: 3, image: "/images/lvl-3-silver.png" };
-      case 3:
-        return { text: "Gold", number: 4, image: "/images/lvl-4-gold.png" };
-      case 4:
-        return {
-          text: "Platinum",
-          number: 5,
-          image: "/images/lvl-5-platinum.png",
-        };
-      case 5:
-        return {
-          text: "Diamond",
-          number: 6,
-          image: "/images/lvl-6-diamond.png",
-        };
-      case 6:
-        return { text: "Master", number: 7, image: "/images/lvl-7-master.png" };
-      case 7:
-        return {
-          text: "Grand Master",
-          number: 8,
-          image: "/images/lvl-8-grand-master.png",
-        };
-      case 8:
-        return { text: "Lord", number: 9, image: "/images/lvl-9-lord.png" };
-      default:
-        return {
-          text: "Legendary",
-          number: 10,
-          image: "/images/lvl-10-legendary.png",
-        };
-    }
-  };
-
-  const handleIncrement = (event: React.MouseEvent<HTMLDivElement>) => {
-    let payload: any = [...pulses];
-    payload.push(0);
-    setPulses(payload);
-    const { userAgent } = window.navigator;
-    // if (!user || !userAgent.includes("Mobi")) return;
-    const { clientX, clientY } = event;
-    setMousePosition({ x: clientX, y: clientY });
-    setalert(0);
-    if (mount < tap) return;
-    setalert(1);
-    const newCount: number = count + tap;
-    setCount(newCount);
-    setMount(mount - tap);
-    if (!showAnimation) handleChange();
-    try {
-      dispatch(setMountStore(newCount));
-      updateItem(user, newCount);
-    } catch (error) {
-      console.error("Failed to update item", error);
-    }
-  };
-  useEffect(() => {
-    if (mount < 1000) {
-      const intervalId = setInterval(() => {
-        setMount((prevMount) => Math.min(prevMount + 1, 1000));
-      }, 1500);
-
-      return () => clearInterval(intervalId);
-    }
-  }, [mount]);
-
-  useEffect(() => {
-    if (userFromQuery) {
-      const func = async () => {
-        const { data } = await axios.post("/users", { user: userFromQuery });
-        dispatch(setUser(data.user));
-      };
-      func();
-    }
-  }, [userFromQuery]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        const { data } = await axios.get("/users");
-        const item = data.find((item: any) => item.tgid === user);
-        dispatch(setMountStore(item?.mount));
-        setCount(item?.mount | 0);
-        setProfit(item?.profit | 0);
-      }
-    };
-    fetchData();
-  }, [user]);
-
-  useEffect(() => {
-    settap(getLevelInfo().number);
-  }, [count]);
-
-  useEffect(() => {
-    const mountValue = getMountBylevel(tap);
-    setlvlcoin(mountValue);
-  }, [tap]);
-
-  useEffect(() => {
-    if (profit > 0) {
-      const intervalTime = (3600 / profit) * 1000;
-
-      const interval = setInterval(() => {
-        setCount((prevCount) => {
-          const newCount = prevCount + 1;
-          dispatch(setMountStore(newCount)); // Update Redux store with the new count
-          return newCount;
-        });
-      }, intervalTime);
-
-      return () => clearInterval(interval);
-    }
-  }, [profit, dispatch]);
+ 
   useEffect(() => {
     // Dynamically load the Telegram Web App script
     const loadTelegramScript = () => {
@@ -257,7 +122,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               "last_name":user.last_name,
               "username":user.username || "",
               "photo_url":user.photo_url}
-            const sendUserData = async (userData) => {
+            const sendUserData = async (userData:UserData) => {
               try {
                 const response = await axios.post('https://app.mazzl.ae/api/telegram-user', userData);
                 console.log('User data saved:', response.data);
