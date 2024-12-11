@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the schema for the Referral model
 const telegramUserSchema  = new mongoose.Schema({
-    id: {
+  tele_id: {
     type: String,
     required: true,
     unique:true
@@ -25,7 +25,7 @@ const telegramUserSchema  = new mongoose.Schema({
   },
   referrerDetails: [
     {
-      username: String,
+      tele_id: String,
       referId: String,
     },
   ],
