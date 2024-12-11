@@ -347,10 +347,19 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   : "text-[#A4A4A4]")
               }
             >
-             <ShareIcon/>
+               <Drawer>
+     <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
+    
+     <ShareIcon/>
               <div className={"text-center text-[13px] font-bold text-[#000000] m-0" + (router.pathname === "/"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")}>SHARE</div>
+      </DrawerTrigger>
+      <DrawerContent >
+     <Friend tetegram={telegram} user={teleUser}/>
+        </DrawerContent>
+        </Drawer>
+            
             </div>
           </Link>
           <Link href={`/`}  className="flex flex-col justify-between">

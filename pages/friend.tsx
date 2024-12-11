@@ -80,7 +80,7 @@ function Friend({ tetegram, user }: FriendProps) {
     };
 
     const newCode = generateReferralCode();
-    const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋\n\nPlay our games, invite your friends and earn $DOODLE! 👏\n\nGot some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\nStart your journey to join the $DOODLE gang now 👇\n\nhttps://t.me/make1792Bot/doodlwapp?startapp=${user.id}_${newCode}`;
+    const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋\n\nPlay our games, invite your friends and earn $DOODLE! 👏\n\nGot some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\nStart your journey to join the $DOODLE gang now 👇\n\nhttps://t.me/DoodleStudio_bot/DoodleGameStudio=${user.id}_${newCode}`;
 
     enqueueSnackbar("Invite link copied to clipboard!", { variant: "success" });
 
