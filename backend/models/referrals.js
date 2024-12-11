@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Define the schema for the Referral model
 const referralSchema = new mongoose.Schema({
-  userId: {
+  tele_id: {
     type: String,
     required: true,
   },

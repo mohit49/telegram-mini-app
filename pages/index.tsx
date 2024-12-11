@@ -249,51 +249,13 @@ const Index: React.FC<IndexProps> = ({ data }) => {
             setTeleUser(user);
             // Get user information
             const params = telegram.initDataUnsafe?.start_param || null;
-            if(params) {
-              const userId = params.split("_")[0];
-
-              const referrerId = params.split("_")[1];
-              const setReffral = async () => {
-                try {
-                  const response = await axios.post('https://app.mazzl.ae/api/referrals', {"userId" : userId , "referrerId" : referrerId});
-
-                  
-                  console.log('User data saved:', response.data);
-                } catch (error) {
-                  console.error('Error saving user data:', error);
-                }
-              };
-
-              const payload = {
-                username: user.username,
-                referrerDetails: [
-                  {
-                    username: userId,
-                    referId: referrerId
-                  }
-                ]
-              };
-              
-              axios.put('https://app.mazzl.ae/api/telegram-user/update-referrer-details', payload, {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              })
-                .then(response => console.log('Response:', response.data))
-                .catch(error => {
-                  if (error.response) console.error('Error Response:', error.response.data);
-                  else if (error.request) console.error('Error Request:', error.request);
-                  else console.error('Error:', error.message);
-                });
-              setReffral()
-            }
             setParams(params)
           
             if(user){
-           const userData =  {"id":user.id,
+           const userData =  {"tele_id":user.id,
               "first_name":user.first_name,
               "last_name":user.last_name,
-              "username":user.username,
+              "username":user.username || "",
               "photo_url":user.photo_url}
             const sendUserData = async (userData) => {
               try {
@@ -305,6 +267,45 @@ const Index: React.FC<IndexProps> = ({ data }) => {
             };
             sendUserData(userData);
           }
+          if(params) {
+            const userId = params.split("_")[0];
+
+            const referrerId = params.split("_")[1];
+            const setReffral = async () => {
+              try {
+                const response = await axios.post('https://app.mazzl.ae/api/referrals', {"userId" : userId , "referrerId" : referrerId});
+
+                
+                console.log('User data saved:', response.data);
+              } catch (error) {
+                console.error('Error saving user data:', error);
+              }
+            };
+
+            const payload = {
+              tele_id: user.id,
+              referrerDetails: [
+                {
+                  tele_id: userId,
+                  referId: referrerId
+                }
+              ]
+            };
+            
+            axios.put('https://app.mazzl.ae/api/telegram-user/update-referrer-details', payload, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+              .then(response => console.log('Response:', response.data))
+              .catch(error => {
+                if (error.response) console.error('Error Response:', error.response.data);
+                else if (error.request) console.error('Error Request:', error.request);
+                else console.error('Error:', error.message);
+              });
+            setReffral()
+          }
+         
         } else {
             console.error("Telegram Web App is not available.");
         }
