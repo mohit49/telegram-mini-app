@@ -117,16 +117,6 @@ function Friend({tetegram,user}) {
 
   const levelInfo = getLevelInfo(count);
 
-  const fetchData = async () => {
-    if (user) {
-      const response = await axios.post("/friends", { user });
-      if (response.data.items == undefined) setItems([]);
-      else setItems(response.data.items);
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, [user]);
 
   useEffect(() => {
     getBonus(levelInfo.number).then(res => {
@@ -147,7 +137,7 @@ function Friend({tetegram,user}) {
     Play our games, invite your friends and earn $DOODLE! 👏\n\n
     Got some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\n
     Start your journey to join the $DOODLE gang now 👇\n\n
-    https://t.me/make1792Bot/doodlwapp?startapp=${user?.username+"_"+newCode})}
+    https://t.me/make1792Bot/doodlwapp?startapp=${user?.id+"_"+newCode})}
     `;
 
     // Show the invite link in a snackbar or modal
