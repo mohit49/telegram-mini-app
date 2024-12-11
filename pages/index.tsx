@@ -80,6 +80,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const userFromQuery = router.query.user?.toString() || "";
   const [openGame, setOpenGame] = useState(false);
   const [teleUser, setTeleUser] = useState<TeleUser>();
+  const [params, setParams] = useState<any>()
+  const [telegram, setTelegram] = useState();
   const getMountBylevel = (level: number): number | number => {
     const item = Games.find((item: Game) => item.level === level);
     return item ? item.mount : 0;
@@ -240,13 +242,53 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     const initializeTelegram = () => {
         if (window?.Telegram) {
             const telegram = window?.Telegram?.WebApp;
-
+            setTelegram(telegram)
             // Notify Telegram that the Mini App is ready
             telegram.ready();
-
-            // Get user information
             const user = telegram.initDataUnsafe?.user || null;
             setTeleUser(user);
+            // Get user information
+            const params = telegram.initDataUnsafe?.start_param || null;
+            if(params) {
+              const userId = params.split("_")[0];
+
+              const referrerId = params.split("_")[1];
+              const setReffral = async () => {
+                try {
+                  const response = await axios.post('https://app.mazzl.ae/api/referrals', {"userId" : userId , "referrerId" : referrerId});
+
+                  
+                  console.log('User data saved:', response.data);
+                } catch (error) {
+                  console.error('Error saving user data:', error);
+                }
+              };
+
+              const payload = {
+                username: user.username,
+                referrerDetails: [
+                  {
+                    username: userId,
+                    referId: referrerId
+                  }
+                ]
+              };
+              
+              axios.put('https://app.mazzl.ae/api/telegram-user/update-referrer-details', payload, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(response => console.log('Response:', response.data))
+                .catch(error => {
+                  if (error.response) console.error('Error Response:', error.response.data);
+                  else if (error.request) console.error('Error Request:', error.request);
+                  else console.error('Error:', error.message);
+                });
+              setReffral()
+            }
+            setParams(params)
+          
             if(user){
            const userData =  {"id":user.id,
               "first_name":user.first_name,
@@ -281,7 +323,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <>
        <Header/>
        <div className="flex justify-center flex-row py-4">
-      <p className="w-[90%] overflow-scroll">  {JSON.stringify(teleUser)}</p>
+      <p className="w-[90%] overflow-scroll">  {params}</p>
       {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-b">Hi!  {teleUser?.username}</p>)}
        </div>
    <div className="flex-row flex justify-around p-2 h-[6vh]">
@@ -475,7 +517,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
      Earn
       </DrawerTrigger>
       <DrawerContent >
-     <Friend/>
+     <Friend tetegram={telegram} user={teleUser}/>
         </DrawerContent>
         </Drawer>
              </div>

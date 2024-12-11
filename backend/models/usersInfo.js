@@ -23,6 +23,12 @@ const telegramUserSchema  = new mongoose.Schema({
     type: String,
     default: Date.now,
   },
+  referrerDetails: [
+    {
+      username: String,
+      referId: String,
+    },
+  ],
   date_added: { type: Date, default: Date.now }
 
 });

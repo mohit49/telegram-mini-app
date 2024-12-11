@@ -12,6 +12,7 @@ import userImg from "@/public/USER.png"
 import { Button } from "@/components/ui/button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { initUtils } from '@telegram-apps/sdk';
 interface Item {
   tgid: string;
   mount: number;
@@ -30,8 +31,8 @@ type LevelInfo = {
   lvlcoin: number;
 };
 
-function Friend() {
-  const user = useSelector((x: any) => x.TaskReducer.user);
+function Friend({tetegram,user}) {
+ 
   const router = useRouter();
   const userFromQuery = router.query.user?.toString() || "";
   const [items, setItems] = useState<Item[]>([]);
@@ -134,13 +135,19 @@ function Friend() {
   }, [levelInfo.number]);
   
   const handleInviteClick = async () => {
+    function generateReferralCode() {
+      return Math.floor(1000 + Math.random() * 9000).toString(); // Generate a number between 1000 and 9999
+  }
+  
+  // Example usage
+  const newCode = generateReferralCode();
     // Generate the invite link
     const inviteLink = `$DOODLE - The ONLY Telegram token you need. 🎮 👋
     \n
     Play our games, invite your friends and earn $DOODLE! 👏\n\n
     Got some degen friends? Let them join $DOODLE! Spread the word with us and stack your $DOODLE together.\n\n
     Start your journey to join the $DOODLE gang now 👇\n\n
-    https://t.me/DoodleStudio_bot?start=${user}
+    https://t.me/make1792Bot/doodlwapp?startapp=${user?.username+"_"+newCode})}
     `;
 
     // Show the invite link in a snackbar or modal
@@ -151,8 +158,9 @@ function Friend() {
       inviteLink
     )}`;
 
-    // Open the share link in a new window
-    window.open(shareLink, "_blank");
+    tetegram?.openTelegramLink(shareLink);
+
+
   };
 
   const handleMoreBonusesClick = () => {
