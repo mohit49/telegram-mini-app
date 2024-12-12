@@ -4,7 +4,7 @@ import useGame from "@/hooks/useGame";
 import _ from "lodash";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useGlobalContext } from "@/pages/_app";
 interface ModalProps {
   show: boolean;
   onContinue: (score: number) => void;
@@ -13,7 +13,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ show, onContinue, onExit }) => {
   const { rounds } = useGame();
-
+  const { userData } = useGlobalContext();
   const score = _.last(rounds)?.score || 0; // Current score from the latest round
   const best = _.maxBy(rounds, "score")?.score || 0; // Best score from all rounds
 

@@ -198,7 +198,7 @@ body {
   height: 100%;
   background: white;
   overflow-y: auto;
-  padding-bottom: 10vh;
+  padding-bottom: 0;
 }
 
 .text-base, .text-xs {

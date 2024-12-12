@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect  } from "react";
 import { GetStaticProps } from "next";
+import { useGlobalContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 import axios from "@/app/axios";
 import { updateItem } from "../app/lib/api";
@@ -27,7 +28,7 @@ import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, De
 import { fill } from "lodash";
 import { Button } from "@/components/ui/button"
 import { useSnackbar } from "notistack";
-import { sendUserData, updateReferralDetails, handleReferral , fetchTelegramUser } from "@/utils/api";
+import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock } from "@/utils/api";
 import {
   Drawer,
   DrawerClose,
@@ -63,34 +64,20 @@ interface TeleUser {
   // other properties if needed
 }
 
-interface UserData {
-  tele_id: number;      // Assuming `user.id` is a number
-  first_name: string;   // Assuming `user.first_name` is a string
-  last_name: string;    // Assuming `user.last_name` is a string
-  username: string;     // `user.username` can be a string, or an empty string if not available
-  photo_url?: string;   // `photo_url` can be a string or undefined if not available
+interface HeaderProps {
+  userData: any; // userData can be UserData or null
 }
 
 
 const Index: React.FC<IndexProps> = ({ data }) => {
 
- 
+  const { userData, setUserDate , setTeleUser, teleUser , setTelegram , telegram } = useGlobalContext();
   const router = useRouter();
 
 
-  const [teleUser, setTeleUser] = useState<any>();
-  const [params, setParams] = useState<any>()
-  const [telegram, setTelegram] = useState();
- const [reffrelScreen , setReffrelScreen] = useState<boolean>()
 
-  const defaultOption = {
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
- 
+  const [params, setParams] = useState<any>()
+
   useEffect(() => {
     // Dynamically load the Telegram Web App script
     const loadTelegramScript = () => {
@@ -130,6 +117,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               sendUserData(userData)
                 .then((response:any) => {
                   console.log("User data saved:", response);
+                  setTeleUser(user);
+                  setUserDate(response.user)
                 })
                 .catch((error:any) => {
                   console.error("Error saving user data:", error);
@@ -154,10 +143,38 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                     .catch((error:any) => {
                       console.error("Error updating referral details:", error);
                     });
+
+                    const refrls = async () => {
+                      try {
+                        // Update referredBy
+                        const referredByResponse = await updateRefferedBy({
+                          userId: user.id,
+                          refferedby: {
+                            refferedby: userId, // Ensure correct spelling and structure of field names
+                          },
+                        });
+                        console.log("Referral details updated:", referredByResponse);
+                    
+                        // Update referralUnlock
+                        const referralUnlockResponse = await updateRefferedUnlock({
+                          userId: user.id,
+                          refferUnlock: {
+                            refferUnlock: false, // Ensure correct spelling and structure of field names
+                          },
+                        });
+                        console.log("Referral unlock details updated:", referralUnlockResponse);
+                      } catch (error) {
+                        console.error("Error updating referral details:", error);
+                      }
+                    };
+                    
+                    // Call the function
+                    refrls();
                 }
-                setTeleUser(user);
+               
             } else {
               setTeleUser(user);
+              setUserDate(data)
             }
          
          
@@ -177,8 +194,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   return (
 
     <>
-   {reffrelScreen && <div>refred</div> }
-       <Header/>
+
+       <Header userData={userData}/>
        <div className="flex justify-center flex-row py-4">
       <p className="w-[90%] overflow-scroll">  {params}</p>
       {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-b">Hi!  {teleUser?.username}</p>)}
@@ -187,7 +204,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
-<div className="h-[auto]">
+<div className="h-[auto] pb-[10vh]">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
   <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
