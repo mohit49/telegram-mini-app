@@ -78,7 +78,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
   const router = useRouter();
 
 
-  const [teleUser, setTeleUser] = useState<TeleUser>();
+  const [teleUser, setTeleUser] = useState<any>();
   const [params, setParams] = useState<any>()
   const [telegram, setTelegram] = useState();
  const [reffrelScreen , setReffrelScreen] = useState<boolean>()
