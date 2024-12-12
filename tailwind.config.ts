@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			aglet: ['AgletSans', 'sans-serif'], // Define the custom font
+		  },
   		colors: {
   			main: '#FF594B',
   			background: 'hsl(var(--background))',
@@ -62,10 +65,7 @@ const config: Config = {
   			yellow: '1px -19px 16px 1px rgba(243,186,47,0.3)',
   			'1xl': '1px -1px 13px 3px #111'
   		},
-  		fontFamily: {
-  			gta: 'GT America Mono,system-ui,sans-serif',
-  			Inter: 'Inter, sans-serif'
-  		},
+  		
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
