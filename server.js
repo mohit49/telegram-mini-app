@@ -26,7 +26,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.post('/telegram-user', async (req, res) => {
   console.log("post-hp")
-    const { tele_id, first_name, last_name, username,  photo_url } = req.body;
+    const { tele_id, first_name, last_name, username,  photo_url , credit , referredby } = req.body;
 
     // Check if the user already exists in the database
     const existingUser = await telegramUser.findOne({ tele_id });
@@ -43,8 +43,9 @@ console.log(existingUser)
         first_name,
         last_name,
         username,
-       
-        photo_url
+        credit,
+        photo_url,
+        referredby
     });
 
     try {
@@ -106,6 +107,108 @@ app.get('/telegram-user/:tele_id', async (req, res) => {
 });
 
 
+app.put('/update-credit/:tele_id', async (req, res) => {
+  console.log("put-update-credit");
+
+  const { tele_id } = req.params; // Extract tele_id from URL
+  const { credit } = req.body;   // Extract credit from request body
+
+  // Validate that the credit field is provided
+  if (credit == null) {
+      return res.status(400).json({ message: 'Credit is required' });
+  }
+
+  try {
+      // Find the user by tele_id
+      const user = await telegramUser.findOne({ tele_id });
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Calculate the updated credit
+      const updatedCredit = (user.credit || 0) + credit;
+
+      // Update the user's credit field
+      const updatedUser = await telegramUser.findOneAndUpdate(
+          { tele_id },
+          { credit: updatedCredit },
+          { new: true } // Return the updated document
+      );
+
+      return res.status(200).json({ 
+          message: 'Credit updated successfully', 
+          user: updatedUser 
+      });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error updating credit' });
+  }
+});
+
+
+
+app.put('/update-referredBy/:tele_id', async (req, res) => {
+  console.log("put-update-credit");
+
+  const { tele_id } = req.params; // Extract tele_id from URL
+  const { refferedby } = req.body;   // Extract credit from request body
+
+  // Validate that the credit field is provided
+  if (refferedby == null) {
+      return res.status(400).json({ message: 'referredby is required' });
+  }
+
+  try {
+      // Find the user by tele_id and update the credit field
+      const updatedUser = await telegramUser.findOneAndUpdate(
+          { tele_id },
+          { refferedby },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      return res.status(200).json({ message: 'details updated successfully', user: updatedUser });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error updating credit' });
+  }
+});
+
+app.put('/update-referalUnlock/:tele_id', async (req, res) => {
+  console.log("put-update-referalUnlock");
+
+  const { tele_id } = req.params; // Extract tele_id from URL
+  const { refferUnlock } = req.body; // Extract referalUnlock from request body
+
+  // Validate that the referalUnlock field is provided
+  if (refferUnlock == null) {
+      return res.status(400).json({ message: 'ReferalUnlock is required' });
+  }
+
+  try {
+      // Find the user by tele_id and update the referalUnlock field
+      const updatedUser = await telegramUser.findOneAndUpdate(
+          { tele_id },
+          { refferUnlock },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      return res.status(200).json({ message: 'ReferalUnlock updated successfully', user: updatedUser });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error updating referalUnlock' });
+  }
+});
+
+
 app.put('/telegram-user/update-referrer-details', async (req, res) => {
   const { tele_id, referrerDetails } = req.body;
 
@@ -151,6 +254,51 @@ console.log(teleIdExist.length)
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Error updating referrer details' });
+  }
+});
+
+app.put('/last-game-played/:tele_id', async (req, res) => {
+  console.log("last-game-played");
+
+  const { tele_id } = req.params; // Extract tele_id from URL
+  function getCurrentDateTimeCustom() {
+    const now = new Date();
+  
+    // Format date as DD-MM-YYYY
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
+    const year = now.getFullYear();
+  
+    // Format time as HH:MM:SS
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+  
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  }
+  lastGamePlay  = getCurrentDateTimeCustom();   // Extract credit from request body
+
+  // Validate that the credit field is provided
+  if (lastGamePlay == null) {
+      return res.status(400).json({ message: 'referredby is required' });
+  }
+
+  try {
+      // Find the user by tele_id and update the credit field
+      const updatedUser = await telegramUser.findOneAndUpdate(
+          { tele_id },
+          { lastGamePlay },
+          { new: true } // Return the updated document
+      );
+
+      if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      return res.status(200).json({ message: 'Last Game Played Updated', user: updatedUser });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error updating Last Game Played' });
   }
 });
 

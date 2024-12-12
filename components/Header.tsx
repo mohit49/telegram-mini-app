@@ -3,8 +3,16 @@ import { motion } from "framer-motion";
 import logoImg from "@/public/logo.png";
 import Image from "next/image";
 import { CopyIcon, DepositeIcon, DownArrow, LocIcon, QrCode, TonIcon, Withdraw } from "@/utils/icons";
+import { useGlobalContext } from "@/pages/_app";
+// Define the props for the Header component
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  userData: any; // userData can be UserData or null
+}
+
+
+const Header: React.FC<HeaderProps> = () => {
+  const { userData } = useGlobalContext();
   const [isActive, setIsActive] = useState<boolean>(false); // State with explicit type
 
   // Function to toggle the account details visibility
@@ -37,10 +45,10 @@ const Header: React.FC = () => {
       {/* Dropdown Section */}
      
         <div className={`leaderboard overflow-hidden bg-[#fc4eac] ${
-          isActive ? " h-[60px]" : "h-[0px]"
+          isActive ? "h-[auto]" : "h-[0px]"
         } transition-all duration-300 ease-in-out px-3`}
         >
-          <div className="flex flex-row justify-between mb-3 py-3">
+          <div className="flex flex-row justify-between mb-0 py-3">
             <div className="flex flex-row items-center gap-2">
               <TonIcon />
               <p className="text-[#ffffff] font-bold">#TON</p>
@@ -50,6 +58,15 @@ const Header: React.FC = () => {
             </div>
           </div>
           <hr />
+          <div className="flex flex-row justify-between mb-0 py-3">
+            <div className="flex flex-row items-center gap-2">
+              <TonIcon />
+              <p className="text-[#ffffff] font-bold">#Dimonds</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-[#ffffff] font-bold">{userData?.credit}</p>
+            </div>
+          </div>
         </div>
      
 

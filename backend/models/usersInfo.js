@@ -23,6 +23,23 @@ const telegramUserSchema  = new mongoose.Schema({
     type: String,
     default: Date.now,
   },
+  credit: {
+    type: Number,
+   
+  },
+  refferedby: {
+    type: String,
+  
+  },
+  refferUnlock : {
+    type: Boolean,
+  
+  },
+  lastGamePlay : {
+    type: String,
+  
+  },
+
   referrerDetails: [
     {
       tele_id: String,

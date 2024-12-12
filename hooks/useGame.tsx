@@ -2,7 +2,7 @@
 
 import _ from "lodash";
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+
 import { useImmer } from "use-immer";
 import { TargetAndTransition } from "framer-motion";
 import { WritableDraft } from "immer";
@@ -10,7 +10,8 @@ import { v4 } from "uuid";
 import Modal from "@/app/components/Modal";
 import axios from "@/app/axios"
 import { updateItem } from "@/app/lib/api";
-
+import { useGlobalContext } from "@/pages/_app";
+import {updateRefferedUnlock , updateCredit } from "@/utils/api";
 const HEIGHT = 50;
 const WIDTH = 50;
 const FRAMES = ["0px", "50px", "50px", "0px"];
@@ -158,24 +159,23 @@ type StateDraft = WritableDraft<GameState>;
 const GameContext = React.createContext<GameContext | null>(null);
 
 export const GameProvider = ({ children }: { children: React.ReactNode }) => {
-  const dispatch = useDispatch();
+  const { userData, setGameStatus } = useGlobalContext();
   const [state, setState] = useImmer<GameState>(defaultState);
   const [showModal, setShowModal] = React.useState(false);
   const [count, setCount] = useState<number>(0);
-  const user = useSelector((x: any) => x.TaskReducer.user);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (user) {
-        const { data } = await axios.get("/users");
-        const item = data.find((item: any) => item.tgid === user); // Adjust the condition if needed
-        setCount(item?.mount | 0 as number);
-      }
-    };
-    fetchData();
-  }, [user]);
+useEffect(()=>{
+ 
+if(showModal) {
+  setGameStatus("end")
+}
+  
+ 
+},[showModal])
+ 
 
   const startGame = (window: Size) => {
+    setGameStatus("start")
     setState((draft) => {
       draft.window = window;
       draft.isReady = true;
@@ -429,7 +429,7 @@ export const GameProvider = ({ children }: { children: React.ReactNode }) => {
   const handleScore = async (score: number) => {
     const newCount = count + score;
     setCount(newCount)
-    updateItem(user, newCount)
+  
   }
 
   return (

@@ -52,3 +52,62 @@ export const fetchTelegramUser = async (userId: string) => {
       throw error; // Re-throw error for further handling
     }
   };
+
+
+  // update reffered by data
+
+  export const updateRefferedBy = async (payload: any) => {
+    const { userId, refferedby } = payload;
+    try {
+      const response = await axios.put(`${apiBaseUrl}/update-referredBy/${userId}`, refferedby, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+  export const updateRefferedUnlock = async (payload: any) => {
+    const { userId, refferUnlock } = payload;
+    try {
+      const response = await axios.put(`${apiBaseUrl}/update-referalUnlock/${userId}`, refferUnlock, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+
+  export const updateCredit = async (payload: any) => {
+    const { userId, credit } = payload;
+    try {
+      const response = await axios.put(`${apiBaseUrl}/update-credit/${userId}`, credit, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+
+  export const updateLastGamePlay = async (payload: any) => {
+    try {
+      const response = await axios.put(`${apiBaseUrl}/last-game-played/${payload}`, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+
+  
