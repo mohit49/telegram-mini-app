@@ -70,6 +70,25 @@ app.get('/telegram-user', async (req, res) => {
   }
 });
 
+
+app.delete('/telegram-user/:id', async (req, res) => {
+  console.log("DELETE /telegram-user/:id");
+  const { id } = req.params;
+
+  try {
+    const result = await telegramUser.findByIdAndDelete(id);
+
+    if (!result) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.status(200).json({ message: 'User deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error deleting user' });
+  }
+});
+
 // Route to get a single Telegram user by tele_id
 app.get('/telegram-user/:tele_id', async (req, res) => {
   const { tele_id } = req.params;
@@ -105,7 +124,7 @@ const rfferedUser = referrerDetails[0].tele_id;
 
     const alreadyHaveAccount = await telegramUser.findOne({'tele_id': rfferedUser});
 
- const teleIdExist =  existingUser.referrerDetails.filter( (existingReferrer) => existingReferrer.tele_id  + referrerDetails[0].tele_id)
+ const teleIdExist =  existingUser.referrerDetails.filter( (existingReferrer) => existingReferrer.tele_id  == referrerDetails[0].tele_id)
 
 console.log(teleIdExist.length)
     // If any duplicates are found, don't add anything and return
