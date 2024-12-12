@@ -77,7 +77,7 @@ app.get('/telegram-user/:tele_id', async (req, res) => {
   try {
     const user = await telegramUser.findOne({ tele_id });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(200).json({ message: 'User not found' });
     }
     return res.status(200).json(user);
   } catch (err) {
@@ -91,7 +91,7 @@ app.put('/telegram-user/update-referrer-details', async (req, res) => {
   const { tele_id, referrerDetails } = req.body;
 
   if (!tele_id || !Array.isArray(referrerDetails) || referrerDetails.length === 0) {
-    return res.status(400).json({ message: 'Username and referrerDetails array are required' });
+    return res.status(400).json({ message: 'tele_id and referrerDetails array are required' });
   }
 
   try {
@@ -101,33 +101,48 @@ app.put('/telegram-user/update-referrer-details', async (req, res) => {
     if (!existingUser) {
       return res.status(404).json({ message: 'User not found' });
     }
+const rfferedUser = referrerDetails[0].tele_id;
 
-    const uniqueReferrerDetails = referrerDetails.filter((newReferrer) => {
-      return !existingUser.referrerDetails.some(
-        (existingReferrer) => existingReferrer.tele_id === newReferrer.tele_id
-      );
-    });
+    const alreadyHaveAccount = await telegramUser.findOne({'tele_id': rfferedUser});
 
-    if (uniqueReferrerDetails.length === 0) {
-      return res.status(200).json({ message: 'No new referrer details to add', user: existingUser });
+ const teleIdExist =  existingUser.referrerDetails.filter( (existingReferrer) => existingReferrer.tele_id  + referrerDetails[0].tele_id)
+
+console.log(teleIdExist.length)
+    // If any duplicates are found, don't add anything and return
+    if (teleIdExist.length > 0) {
+      return res.status(200).json({
+        message: 'Duplicate referrerDetails found. No changes were made.',
+        user: existingUser,
+      });
+    }
+    else {
+ // Append new referrerDetails to the array
+ existingUser.referrerDetails.push(...referrerDetails);
+
+ // Save the updated user back to the database
+ await existingUser.save();
+
+ return res.status(200).json({
+   message: 'Referrer details updated successfully',
+   user: existingUser,
+ });
     }
 
-    // Update the referrerDetails array by adding only the unique entries
-    const updatedUser = await telegramUser.findOneAndUpdate(
-      { tele_id }, // Match the username
-      { $addToSet: { referrerDetails: { $each: uniqueReferrerDetails } } }, // Add unique entries
-      { new: true } // Return the updated document
-    );
-
-    return res.status(200).json({
-      message: 'Referrer details updated successfully',
-      user: updatedUser,
-    });
+   
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: 'Error updating referrer details' });
   }
 });
+
+
+
+
+
+
+
+
+
 
 
 
