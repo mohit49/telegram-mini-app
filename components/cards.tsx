@@ -31,7 +31,7 @@ const ReferralCard: React.FC<ReferralCardProps> = ({ telegramId }) => {
   }
 
   return (
-    <div className="w-[27%] flex flex-col gap-2">
+    <div className="w-[50px] flex flex-col gap-2">
       <Image
         className="h-[auto] w-[100%] !rounded-[10px]"
         src={userData?.photo_url || userImg} // Use fetched image or default
