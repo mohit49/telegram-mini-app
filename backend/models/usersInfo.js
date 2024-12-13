@@ -39,7 +39,10 @@ const telegramUserSchema  = new mongoose.Schema({
     type: String,
   
   },
-
+  lastLogin : {
+    type: String,
+  
+  },
   referrerDetails: [
     {
       tele_id: String,

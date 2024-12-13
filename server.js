@@ -26,7 +26,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.post('/telegram-user', async (req, res) => {
   console.log("post-hp")
-    const { tele_id, first_name, last_name, username,  photo_url , credit , referredby } = req.body;
+    const { tele_id, first_name, last_name, username,  photo_url , credit , referredby, lastLogin , refferUnlock } = req.body;
 
     // Check if the user already exists in the database
     const existingUser = await telegramUser.findOne({ tele_id });
@@ -45,7 +45,9 @@ console.log(existingUser)
         username,
         credit,
         photo_url,
-        referredby
+        referredby,
+        lastLogin,
+        refferUnlock
     });
 
     try {

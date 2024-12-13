@@ -25,10 +25,10 @@ import gm4 from "@/public/crdwe.png"
 import userImg from "@/public/USER.png"
 import shareHand from "@/public/share-hand.png"
 import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon } from "@/utils/icons";
-import { fill } from "lodash";
+import _, { fill } from "lodash";
 import { Button } from "@/components/ui/button"
 import { useSnackbar } from "notistack";
-import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock } from "@/utils/api";
+import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit } from "@/utils/api";
 import {
   Drawer,
   DrawerClose,
@@ -112,13 +112,26 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                 last_name: user.last_name,
                 username: user.username || "",
                 photo_url: user.photo_url,
+                lastLogin:Date.now(),
+                refferUnlock: false,
+                credit : 0
               };
     
               sendUserData(userData)
                 .then((response:any) => {
                   console.log("User data saved:", response);
                   setTeleUser(user);
-                  setUserDate(response.user)
+                  setUserDate(response.user);
+
+                  const newAccouCredit =async()=>{
+                    const updatecredit = await updateCredit({
+                      userId: userData.tele_id,
+                      credit: {
+                          credit: 2, // Ensure correct spelling and structure of field names
+                      },
+                  });
+                  }
+                  newAccouCredit();
                 })
                 .catch((error:any) => {
                   console.error("Error saving user data:", error);
@@ -154,7 +167,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                           },
                         });
                         console.log("Referral details updated:", referredByResponse);
-                    
+                        setUserDate(referredByResponse.user);
                         // Update referralUnlock
                         const referralUnlockResponse = await updateRefferedUnlock({
                           userId: user.id,
@@ -174,7 +187,25 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                
             } else {
               setTeleUser(user);
-              setUserDate(data)
+              setUserDate(data);
+              const has24HoursPassed = (lastTimestamp: any) => {
+                if (!lastTimestamp) return true; // If no timestamp exists, treat it as expired
+                const lastTime = new Date(lastTimestamp).getTime();
+                const currentTime = new Date().getTime();
+                return currentTime - lastTime >= 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                
+            }
+              if (has24HoursPassed(data.lastLogin)) {
+                const updatecreditScroreofrefferedBy = await updateCredit({
+                  userId: userData?.tele_id,
+                  credit: {
+                      credit: 3, // Ensure correct spelling and structure of field names
+                  },
+              });     
+             
+            }
+
+
             }
          
          
