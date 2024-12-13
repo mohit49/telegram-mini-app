@@ -62,7 +62,7 @@ export const DownArrow = () =>( <svg fill="#000000" height="20px" width="20px" v
     <svg fill="#aeaeae"
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 1"
-      viewBox="-5.0 -10.0 100.0 100.0"
+      viewBox="-5.0 -10.0 100.0 110.0"
       x="0px"
       y="0px"
       className='h-[20px]'
