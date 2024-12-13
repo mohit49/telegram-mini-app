@@ -9,7 +9,7 @@ import shareHand from "@/public/share-hand.png";
 import ReferralCard from "@/components/cards";
 import { Button } from "@/components/ui/button";
 import { AnimatedDiamond } from "@/utils/icons";
-
+import DimondIcon from "@/public/dimond.png";
 interface Item {
   tgid: string;
   mount: number;
@@ -98,7 +98,7 @@ function Friend({ tetegram, user }: FriendProps) {
       <div className="text-center px-3 pb-4 m-auto w-full">
         <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto mb-3 border border-[#cccccc] flex flex-row justify-between">
           <p className="font-bold">You earned</p>
-          <p className="font-bold flex gap-2">{data?.credit} <AnimatedDiamond/></p>
+          <p className="font-bold flex gap-2">{data?.credit}  <Image className="h-[35px] w-[35px] object-cover " src={DimondIcon} alt="Dimond" /></p>
         </div>
 
         {!refrals?.referrerDetails || refrals.referrerDetails.length === 0 ? (
