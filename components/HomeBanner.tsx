@@ -20,7 +20,7 @@ import {
 const HomeBanner:any = ({telegram, user}:any) => {
   const router = useRouter();
   return (
-    <div className='w-full overflow-hidden'>
+   
     <Swiper className='w-full !py-1'
     autoHeight={true}
     spaceBetween={10}
@@ -57,7 +57,7 @@ const HomeBanner:any = ({telegram, user}:any) => {
       </SwiperSlide>
       
     </Swiper>
-    </div>
+   
   );
 };
 
