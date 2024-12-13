@@ -268,56 +268,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     </div>
    
    </div>
-     <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="deposit  !rounded-[10px] h-[50px] mt-4 ml-auto mr-auto w-[95%]  !bg-[#80b1fe] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4"> <span className="text-[#ffffff] leading-4 !font-bold inline-block">Deposit / Withdraw</span></Button>
-      </DrawerTrigger>
-      <DrawerContent>
-     <div className="flex flex-row justify-center ">
-     <Drawer>
-     <DrawerTrigger className="text-left flex flex-row gap-4 p-4 items-center">
-      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
-      <div className="content">
-    
-    
-      <h2 className="text-[28px] font-bold text-[#000000] font-bold">Deposit</h2>
-      <p className="text-[14px] text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
-    
   
-       
-      </div>
-      </DrawerTrigger>
-      <DrawerContent >
-        <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4 pt-5">
-        <div className="ico w-[70px] m-auto text-center flex justify-center items-center"><span className="!bg-[#80b1fe] h-[50px] w-[50px] rounded-[50px]  p-4 flex items-center justify-center"><DepositeIcon/></span></div>
-        <h2 className="text-[30px] font-bold">Deposit</h2>
-        <div className="bg-[#ffa4d5] w-[200px] h-[200px] m-8"><QrCode/></div>
-        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
-         <div className="text-left font-bold"> <h4>Address</h4>
-         <p>0Q0TM...284ht</p></div>
-         <div className="font-bold"><CopyIcon/></div>
-        </div>
-        <div className="flex flex-row justify-between w-[100%]  px-4 items-center">
-         <div className="text-left font-bold"> <h4>Address</h4>
-         <p>0Q0TM...284ht</p></div>
-         <div className="font-bold"><CopyIcon/></div>
-        </div>
-        </div>
-     <br/>
-     <br/>
-        </DrawerContent>
-        </Drawer>
-     </div>
-     <hr/>
-     <div className="flex flex-row justify-center gap-4 p-4 items-center">
-      <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><Withdraw/></span></div>
-      <div className="content">
-        <h2 className="text-[28px] font-bold text-[#000000]">Withdraw</h2>
-        <p className="text-[14px] text-[#000000] font-bold">Withdraw assets to your wallet instantly and safely.</p>
-      </div>
-     </div>
-      </DrawerContent>
-    </Drawer>
 
     <div className="p-4">
 
@@ -427,13 +378,10 @@ const Index: React.FC<IndexProps> = ({ data }) => {
             >
           
               <div className="text-center text-[12px] font-bold text-[#000000] m-0"> 
-              <Drawer>
-     <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
+           
      <EarnIcon/>
      EARN
-      </DrawerTrigger>
-
-        </Drawer>
+    
              </div>
             </div>
          
