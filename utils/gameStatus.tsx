@@ -9,7 +9,7 @@ const gameStatus = () => {
 
         const referCheck = async () => {
             if (gameStatus == "end") {
-                if (!userData.refferUnlock) {
+                if (!userData.refferUnlock && userData?.refferedby) {
                     const referralUnlockResponse = await updateRefferedUnlock({
                         userId: userData.tele_id,
                         refferUnlock: {
@@ -18,12 +18,12 @@ const gameStatus = () => {
                     });
                     console.log("Referral unlock details updated:", referralUnlockResponse);
 
-                    const updatecredit = await updateCredit({
-                        userId: userData.tele_id,
-                        credit: {
-                            credit: 2, // Ensure correct spelling and structure of field names
-                        },
-                    });
+                    //const updatecredit = await updateCredit({
+                     //   userId: userData.tele_id,
+                     //   credit: {
+                      //      credit: 2, // Ensure correct spelling and structure of field names
+                       // },
+                  //  });
 
                     const updatecreditScroreofrefferedBy = await updateCredit({
                         userId: referralUnlockResponse.user.refferedby,
@@ -40,6 +40,7 @@ const gameStatus = () => {
                     const lastTime = new Date(lastTimestamp).getTime();
                     const currentTime = new Date().getTime();
                     return currentTime - lastTime >= 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                    
                 }
 
                 // Function to update the last game play time
@@ -49,7 +50,7 @@ const gameStatus = () => {
                     const updatecreditScroreofrefferedBy = await updateCredit({
                         userId: userData?.tele_id,
                         credit: {
-                            credit: 5, // Ensure correct spelling and structure of field names
+                            credit: 2, // Ensure correct spelling and structure of field names
                         },
                     });
                 }
@@ -57,7 +58,14 @@ const gameStatus = () => {
                 if(!userData?.lastGamePlay) {
                     const userId = userData?.tele_id;
                     const updateTime = await updateLastGamePlay(userId);
-                    userData.lastGamePlay = updateTime?.user?.lastGamePlay
+                    userData.lastGamePlay = updateTime?.user?.lastGamePlay;
+
+                    const updatecreditScroreofrefferedBy = await updateCredit({
+                        userId: userData?.tele_id,
+                        credit: {
+                            credit: 2, // Ensure correct spelling and structure of field names
+                        },
+                    });
                 }
                     // Get the last game play timestamp from localStorage
                     const lastGamePlay = userData?.lastGamePlay || Date.now();

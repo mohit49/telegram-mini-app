@@ -42,7 +42,7 @@ function Friend({ tetegram, user }: FriendProps) {
   const [items, setItems] = useState<Item[]>([]);
   const [levelbonus, setLevelbonus] = useState<Bonus[]>([]);
   const { enqueueSnackbar } = useSnackbar();
-  const count = useSelector((state: { TaskReducer: { mount: number } }) => state.TaskReducer.mount);
+ 
   const [refrals, setRefrals] = useState<Referrals | null>(null);
 
   const fetchUser = async (userId: string): Promise<Referrals> => {
