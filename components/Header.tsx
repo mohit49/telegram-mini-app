@@ -48,23 +48,32 @@ const Header: React.FC<HeaderProps> = () => {
           isActive ? "h-[auto]" : "h-[0px]"
         } transition-all duration-300 ease-in-out px-3`}
         >
-          <div className="flex flex-row justify-between mb-0 py-3">
+           <div className="flex flex-row justify-between mb-0 py-3">
             <div className="flex flex-row items-center gap-2">
               <TonIcon />
-              <p className="text-[#ffffff] font-bold">#TON</p>
+              <p className="text-[#000000] font-bold">Doodle</p>
             </div>
             <div className="flex flex-row items-center gap-2">
-              <p className="text-[#ffffff] font-bold">0</p>.<p>$0</p>
+              <p className="text-[#000000] font-bold">20</p>
             </div>
           </div>
-          <hr />
           <div className="flex flex-row justify-between mb-0 py-3">
             <div className="flex flex-row items-center gap-2">
               <TonIcon />
-              <p className="text-[#ffffff] font-bold">#Dimonds</p>
+              <p className="text-[#000000] font-bold">#TON</p>
             </div>
             <div className="flex flex-row items-center gap-2">
-              <p className="text-[#ffffff] font-bold">{userData?.credit}</p>
+              <p className="text-[#000000] font-bold">0</p>.<p>$0</p>
+            </div>
+          </div>
+         
+          <div className="flex flex-row justify-between mb-0 py-3">
+            <div className="flex flex-row items-center gap-2">
+              <TonIcon />
+              <p className="text-[#000000] font-bold">Dimonds</p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-[#000000] font-bold">{userData?.credit}</p>
             </div>
           </div>
         </div>

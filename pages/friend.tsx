@@ -42,7 +42,7 @@ function Friend({ tetegram, user }: FriendProps) {
   const [items, setItems] = useState<Item[]>([]);
   const [levelbonus, setLevelbonus] = useState<Bonus[]>([]);
   const { enqueueSnackbar } = useSnackbar();
- 
+ const [data , setData] = useState<any>();
   const [refrals, setRefrals] = useState<Referrals | null>(null);
 
   const fetchUser = async (userId: string): Promise<Referrals> => {
@@ -57,7 +57,9 @@ function Friend({ tetegram, user }: FriendProps) {
         `https://app.mazzl.ae/api/telegram-user/${userId}`,
         requestOptions
       );
+      setData(response.data)
       return response.data;
+
     } catch (error) {
       console.error(error);
       throw error;
@@ -95,7 +97,7 @@ function Friend({ tetegram, user }: FriendProps) {
       <div className="text-center px-3 pb-4 m-auto w-full">
         <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-10 ml-auto mr-auto mb-3 border border-[#cccccc] flex flex-row justify-between">
           <p className="font-bold">You earned</p>
-          <p className="font-bold">1500 $Doodle</p>
+          <p className="font-bold">{data?.credit} Diamonds</p>
         </div>
 
         {!refrals?.referrerDetails || refrals.referrerDetails.length === 0 ? (
