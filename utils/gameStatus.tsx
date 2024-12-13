@@ -50,7 +50,7 @@ const gameStatus = () => {
                     const updatecreditScroreofrefferedBy = await updateCredit({
                         userId: userData?.tele_id,
                         credit: {
-                            credit: 2, // Ensure correct spelling and structure of field names
+                            credit: 5, // Ensure correct spelling and structure of field names
                         },
                     });
                 }
@@ -63,7 +63,7 @@ const gameStatus = () => {
                     const updatecreditScroreofrefferedBy = await updateCredit({
                         userId: userData?.tele_id,
                         credit: {
-                            credit: 2, // Ensure correct spelling and structure of field names
+                            credit: 5, // Ensure correct spelling and structure of field names
                         },
                     });
                 }
