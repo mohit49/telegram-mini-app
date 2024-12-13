@@ -103,15 +103,15 @@ const Index: React.FC<IndexProps> = ({ data }) => {
             const params = telegram.initDataUnsafe?.start_param || null;
             setParams(params);
             const user = telegram.initDataUnsafe?.user || null;
-            const reciverTelegramId = user.id;
+            const reciverTelegramId = user?.id;
             const data = await fetchTelegramUser(reciverTelegramId);
             if(data.message == "User not found") {
               const userData = {
-                tele_id: user.id,
-                first_name: user.first_name,
-                last_name: user.last_name,
-                username: user.username || "",
-                photo_url: user.photo_url,
+                tele_id: user?.id,
+                first_name: user?.first_name,
+                last_name: user?.last_name,
+                username: user?.username || "",
+                photo_url: user?.photo_url,
                 lastLogin:Date.now(),
                 refferUnlock: false,
                 credit : 0
@@ -125,7 +125,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
                   const newAccouCredit =async()=>{
                     const updatecredit = await updateCredit({
-                      userId: userData.tele_id,
+                      userId: userData?.tele_id,
                       credit: {
                           credit: 2, // Ensure correct spelling and structure of field names
                       },
@@ -145,7 +145,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                     tele_id: userId,
                     referrerDetails: [
                       {
-                        tele_id: user.id,
+                        tele_id: user?.id,
                         referId: referrerId,
                       },
                     ],
@@ -161,7 +161,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                       try {
                         // Update referredBy
                         const referredByResponse = await updateRefferedBy({
-                          userId: user.id,
+                          userId: user?.id,
                           refferedby: {
                             refferedby: userId, // Ensure correct spelling and structure of field names
                           },
@@ -227,10 +227,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <>
 
        <Header userData={userData}/>
-       <div className="flex justify-center flex-row py-4">
-      <p className="w-[90%] overflow-scroll">  {params}</p>
-      {teleUser?.username && ( <p className="w-[90%] m-auto text-center font-b">Hi!  {teleUser?.username}</p>)}
-       </div>
+     
    <div className="flex-row flex justify-around p-2 h-[6vh]">
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
@@ -311,7 +308,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       <div className="ico"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-4 flex items-center justify-center"><Withdraw/></span></div>
       <div className="content">
         <h2 className="text-[28px] font-bold text-[#000000]">Withdraw</h2>
-        <p className="text-[#000000] font-bold">Securely deposit $TON into your account to start exploring.</p>
+        <p className="text-[14px] text-[#000000] font-bold">Withdraw assets to your wallet instantly and safely.</p>
       </div>
      </div>
       </DrawerContent>
@@ -354,12 +351,12 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     </div>
    </div>
  
-   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-3 px-0 border-t bg-[#f5f5f5] ">
+   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-1 px-0 border-t bg-[#f5f5f5] ">
         <div className="flex flex-row gap- items-center justify-around w-[100%] items-end ">
         <Link href={`/`} className="flex flex-col justify-center active-menu">
             <div
               className={
-                "gamePad flex flex-col justify-between space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
+                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
                 (router.pathname === "/mine"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")
@@ -372,7 +369,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   </div>
               
             
-             <div className={"text-center text-[13px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
+             <div className={"text-center text-[12px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
                   ? "text-[#ffa4d5]"
                   : "text-[#000000]")}>GAMES</div>
             </div>
@@ -390,7 +387,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
      <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
     
      <ShareIcon/>
-              <div className={"text-center text-[13px] font-bold text-[#000000] m-0" + (router.pathname === "/"
+              <div className={"text-center text-[12px] font-bold text-[#000000] m-0" + (router.pathname === "/"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")}>SHARE</div>
       </DrawerTrigger>
@@ -411,7 +408,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <ViewIcon/>
-              <div className="text-center text-[13px] font-bold text-[#000000] m-0">LEADERBOARD</div>
+              <div className="text-center text-[12px] font-bold text-[#000000] m-0">LEADERBOARD</div>
             </div>
           </Link>
         
@@ -424,7 +421,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
           
-              <div className="text-center text-[13px] font-bold text-[#000000] m-0"> 
+              <div className="text-center text-[12px] font-bold text-[#000000] m-0"> 
               <Drawer>
      <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
      <EarnIcon/>

@@ -45,7 +45,7 @@ export const handleReferral = async (userId: string, referrerId: string) => {
 
 export const fetchTelegramUser = async (userId: string) => {
     try {
-      const response = await axios.get(`https://app.mazzl.ae/api/telegram-user/${userId}`);
+      const response = await axios.get(`https://app.mazzl.ae/api/telegram-user/${userId || ""}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching user:", error);
