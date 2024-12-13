@@ -226,6 +226,12 @@ body {
   background-image: linear-gradient(90deg, #0075FF, #86BEFF); */
   color: #86BEFF;
 }
+.swiper {
+  width: 100%;
+  height: auto !important; /* Allow height to adjust automatically */
+  max-height: none;
+  overflow: visible !important;
+}
 .game-pad {
   height: 25px;
 }

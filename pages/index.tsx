@@ -39,7 +39,10 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
+
 import Friend from "./friend";
+import SwiperSlider from "@/components/HomeBanner";
+import HomeBanner from "@/components/HomeBanner";
 interface Game {
   level: number;
   name: string;
@@ -232,6 +235,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p>  <Image className="h-[25px] w-[35px]" src={announcmnt} alt="Logo" /></p><p className="font-bold">mohit_sh earn        3,500 in Racing</p>
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
+
+   <HomeBanner tetegram={telegram} user={teleUser}/>
 <div className="h-[auto] pb-[10vh]">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
@@ -425,7 +430,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               <Drawer>
      <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
      <EarnIcon/>
-     Earn
+     EARN
       </DrawerTrigger>
 
         </Drawer>

@@ -47,6 +47,7 @@
         "react-youtube": "^10.1.0",
         "redux-persist": "^6.0.0",
         "styled-components": "^6.1.11",
+        "swiper": "^11.1.15",
         "tailwindcss-animate": "^1.0.7",
         "url-loader": "^4.1.1",
         "use-immer": "^0.10.0",
