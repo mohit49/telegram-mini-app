@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import logoImg from "@/public/logo.png";
+import DimondIcon from "@/public/dimond.png";
+import Doodle from "@/public/doodle-coin.png";
 import Image from "next/image";
 import { CopyIcon, DepositeIcon, DownArrow, LocIcon, QrCode, TonIcon, Withdraw } from "@/utils/icons";
 import { useGlobalContext } from "@/pages/_app";
@@ -29,13 +31,13 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Account Section */}
         <div className="w-auto flex flex-row gap-3 items-center">
-          <p className="text-[20px] font-medium">$0</p>
+        
          
           <div
             className="flex flex-row items-center gap-2"
             onClick={toggleClass}
           >
-            <span className="flex flex-row gap-0 relative items-center">  <Image className="h-[40px] w-[40px] p-[8px] rounded-[50px] bg-[#c4c5fe] object-cover " src={logoImg} alt="Logo" /> <div className="ml-[-15px]"><TonIcon/></div></span>
+            <span className="flex flex-row gap-0 relative items-center">  <Image className="h-[40px] w-[40px] p-[8px] rounded-[50px] bg-[#c4c5fe] object-cover " src={logoImg} alt="Logo" /> <div className="ml-[-15px]"><TonIcon/> </div><Image className="h-[35px]  w-[35px] object-cover ml-[-15px]" src={DimondIcon} alt="Logo" /></span>
            
             <DownArrow />
           </div>
@@ -48,18 +50,19 @@ const Header: React.FC<HeaderProps> = () => {
           isActive ? "h-[auto]" : "h-[0px]"
         } transition-all duration-300 ease-in-out px-3`}
         >
-           <div className="flex flex-row justify-between mb-0 py-3">
+           <div className="flex flex-row justify-between mb-0 py-2">
             <div className="flex flex-row items-center gap-2">
-              <TonIcon />
+            <Image className="h-[35px] w-[35px] object-cover " src={Doodle} alt="Dimond" />
+             
               <p className="text-[#000000] font-bold">Doodle</p>
             </div>
             <div className="flex flex-row items-center gap-2">
               <p className="text-[#000000] font-bold">20</p>
             </div>
           </div>
-          <div className="flex flex-row justify-between mb-0 py-3">
+          <div className="flex flex-row justify-between mb-0 py-2">
             <div className="flex flex-row items-center gap-2">
-              <TonIcon />
+            <TonIcon />
               <p className="text-[#000000] font-bold">#TON</p>
             </div>
             <div className="flex flex-row items-center gap-2">
@@ -67,9 +70,9 @@ const Header: React.FC<HeaderProps> = () => {
             </div>
           </div>
          
-          <div className="flex flex-row justify-between mb-0 py-3">
+          <div className="flex flex-row justify-between mb-0 py-2">
             <div className="flex flex-row items-center gap-2">
-              <TonIcon />
+            <Image className="h-[35px] w-[35px] object-cover " src={DimondIcon} alt="Dimond" />
               <p className="text-[#000000] font-bold">Dimonds</p>
             </div>
             <div className="flex flex-row items-center gap-2">

@@ -226,7 +226,12 @@ body {
   background-image: linear-gradient(90deg, #0075FF, #86BEFF); */
   color: #86BEFF;
 }
-
+.game-pad {
+  height: 25px;
+}
+.leaderboard-icon {
+  height: 20px;
+}
 @keyframes example1 {
   0% {
     transform: scale(1);
