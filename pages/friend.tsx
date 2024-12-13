@@ -95,6 +95,10 @@ function Friend({ tetegram, user }: FriendProps) {
   return (
     <>
       <Image src={shareHand} alt="share image" />
+      <div className="flex flex-col gap-2 justify-center items-center text-center">
+        <h3 className="text-[35px] font-bold">Invite Friends!</h3>
+        <p className="w-[90%] text-[16px]  font-bold">So they can dive into the best game experience with you.</p>
+      </div>
       <div className="text-center px-3 pb-4 m-auto w-full">
         <div className="rounded-[10px] py-2 bg-[#f0f0f0] px-4 w-[90%] items-center mt-10 ml-auto mr-auto mb-3 border border-[#cccccc] flex flex-row justify-between">
           <p className="font-bold">You earned</p>
