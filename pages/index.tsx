@@ -325,7 +325,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
                   </div>
               
             
-             <div className={"text-center text-[10px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
+             <div className={"text-center text-[11px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
                   ? "text-[#ffa4d5]"
                   : "text-[#000000]")}>Games</div>
             </div>
@@ -343,7 +343,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
      <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
     
      <ShareIcon/>
-              <div className={"text-center text-[10px] font-bold text-[#aeaeae] m-0" + (router.pathname === "/"
+              <div className={"text-center text-[11px] font-bold text-[#aeaeae] m-0" + (router.pathname === "/"
                   ? "text-[#00B2FF]"
                   : "text-[#A4A4A4]")}>Share</div>
       </DrawerTrigger>
@@ -364,7 +364,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <ViewIcon/>
-              <div className="text-center text-[10px] font-bold text-[#aeaeae] !m-0">Leaderboard</div>
+              <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Leaderboard</div>
             </div>
           </Link>
           <Link href={`/`}  className="flex flex-col justify-between">
@@ -377,7 +377,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
              <Activity/>
-              <div className="text-center text-[10px] font-bold text-[#aeaeae] !m-0">Activity</div>
+              <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Activity</div>
             </div>
           </Link>
             <div
@@ -389,7 +389,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               }
             >
           
-              <div className="text-center text-[10px] font-bold text-[#aeaeae] m-0"> 
+              <div className="text-center text-[11px] font-bold text-[#aeaeae] m-0"> 
            
      <EarnIcon/>
      Earn
