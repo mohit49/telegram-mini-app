@@ -238,6 +238,43 @@ body {
 .leaderboard-icon {
   height: 20px;
 }
+
+
+.t1 { fill: #1E3A8A; animation: t1 2s ease-in-out infinite; }
+.t2 { fill: #3B82F6; animation: t2 2s ease-in-out infinite; }
+.t3 { fill: #60A5FA; animation: t3 2s ease-in-out infinite; }
+.t4 { fill: #1E40AF; animation: t4 2s ease-in-out infinite; }
+.t5 { fill: #2563EB; animation: t5 2s ease-in-out infinite; }
+.t6 { fill: #1D4ED8; animation: t6 2s ease-in-out infinite; }
+.t7 { fill: #93C5FD; animation: t7 2s ease-in-out infinite; }
+.t8 { fill: #60A5FA; animation: t8 2s ease-in-out infinite; }
+.t9 { fill: #1E3A8A; animation: t9 2s ease-in-out infinite; }
+
+@keyframes t1 { 0% { fill: #60A5FA; } 20% { fill: #1E40AF; } 40% { fill: #1E3A8A; } 60% { fill: #2563EB; } }
+@keyframes t2 { 5% { fill: #3B82F6; } 25% { fill: #93C5FD; } 45% { fill: #1E40AF; } 65% { fill: #2563EB; } }
+@keyframes t3 { 10% { fill: #60A5FA; } 30% { fill: #BFDBFE; } 50% { fill: #1E3A8A; } 70% { fill: #60A5FA; } }
+@keyframes t4 { 15% { fill: #1E40AF; } 35% { fill: #60A5FA; } 55% { fill: #1E3A8A; } 75% { fill: #1E40AF; } }
+@keyframes t5 { 20% { fill: #2563EB; } 40% { fill: #93C5FD; } 60% { fill: #1D4ED8; } 80% { fill: #2563EB; } }
+@keyframes t6 { 25% { fill: #1D4ED8; } 45% { fill: #93C5FD; } 65% { fill: #1E3A8A; } 85% { fill: #1D4ED8; } }
+@keyframes t7 { 30% { fill: #93C5FD; } 50% { fill: #BFDBFE; } 60% { fill: #2563EB; } 90% { fill: #93C5FD; } }
+@keyframes t8 { 35% { fill: #60A5FA; } 55% { fill: #BFDBFE; } 75% { fill: #1D4ED8; } 95% { fill: #60A5FA; } }
+@keyframes t9 { 40% { fill: #1E3A8A; } 60% { fill: #60A5FA; } 80% { fill: #1D4ED8; } 100% { fill: #1E3A8A; } }
+
+.b1 { fill: #2563EB; animation: b1 2s ease-in-out infinite; }
+.b2 { fill: #3B82F6; animation: b2 2s ease-in-out infinite; }
+.b3 { fill: #1D4ED8; animation: b3 2s ease-in-out infinite; }
+.b4 { fill: #60A5FA; animation: b4 2s ease-in-out infinite; }
+.b5 { fill: #1E40AF; animation: b5 2s ease-in-out infinite; }
+
+@keyframes b1 { 0% { fill: #2563EB; } 20% { fill: #93C5FD; } 40% { fill: #1D4ED8; } 60% { fill: #2563EB; } }
+@keyframes b2 { 10% { fill: #3B82F6; } 30% { fill: #93C5FD; } 50% { fill: #1E40AF; } 70% { fill: #3B82F6; } }
+@keyframes b3 { 20% { fill: #1D4ED8; } 40% { fill: #60A5FA; } 60% { fill: #1E3A8A; } 80% { fill: #1D4ED8; } }
+@keyframes b4 { 30% { fill: #60A5FA; } 50% { fill: #BFDBFE; } 70% { fill: #1E3A8A; } 90% { fill: #60A5FA; } }
+@keyframes b5 { 40% { fill: #1E40AF; } 60% { fill: #60A5FA; } 80% { fill: #1D4ED8; } 100% { fill: #1E40AF; } }
+
+.overlay { fill: #fff; opacity: .1; animation: overlay 2s ease-in-out infinite; }
+@keyframes overlay { 30% { opacity: 0; fill: #000; } 50% { opacity: .1; } 70% { opacity: 0; } }
+
 @keyframes example1 {
   0% {
     transform: scale(1);

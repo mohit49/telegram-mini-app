@@ -57,3 +57,32 @@ export const DownArrow = () =>( <svg fill="#000000" height="20px" width="20px" v
     <rect x="128" y="36" width="208" height="40" fill="#4fc1f8" />
   </svg>
   )
+
+  export const AnimatedDiamond =()=>(<svg className='w-[30px]' xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 70 70">
+    
+  
+  
+    <g>
+      <path fill="#E8422C" d="M10,15h50l10,10l-35,30l-35,-30z"/>
+  
+    
+      <path class="t1" d="M0,25h14l-4,-10z"/>
+      <path class="t2" d="M10,15h11l-7,10z"/>
+      <path class="t3" d="M14,25h14l-7,-10z"/>
+      <path class="t4" d="M21,15h14l-7,10z"/>
+      <path class="t5" d="M28,25h14l-7,-10z"/>
+      <path class="t6" d="M35,15h14l-7,10z"/>
+      <path class="t7" d="M42,25h14l-7,-10z"/>
+      <path class="t8" d="M49,15h11l-4,10z"/>
+      <path class="t9" d="M56,25h14l-10,-10z"/>
+  
+      
+      <path class="b1" d="M0,25h14l21,30z"/>
+      <path class="b2" d="M14,25h14l7,30z"/>
+      <path class="b3" d="M28,25h14l-7,30z"/>
+      <path class="b4" d="M42,25h14l-21,30z"/>
+      <path class="b5" d="M56,25h14l-35,30z"/>
+  
+      <path class="overlay" d="M10,15h50l10,10l-35,30l-35,-30z"/>
+    </g>
+  </svg>)
