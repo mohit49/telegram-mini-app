@@ -153,6 +153,10 @@ html {
 
 body {
   background-color: black;
+  font-family: 'Aglet Sans' !important;
+}
+p {
+  font-family: 'Aglet Sans' !important;
 }
 
 @layer utilities {
@@ -235,8 +239,30 @@ body {
 .game-pad {
   height: 20px;
 }
-.leaderboard-icon {
-  height: 20px;
+.hard-shadow{
+ box-shadow:  10px 10px #000000;
+}
+.copyIcon {
+  width: 20px;
+}
+.active-menu.bottom-icon {
+  color: #ffa4d5;
+  fill: #ffa4d5;
+}
+.active-menu .bottom-icon path {
+  fill: #ffa4d5;
+}
+.bottom-icon {
+  height: 30px;
+  color: #8c8c8c;
+  fill: #8c8c8c;
+}
+.bottom-icon path {
+  fill: #8c8c8c;
+}
+.bottom-icon {
+ 
+  width: 30px;
 }
 
 .dimond-anim {

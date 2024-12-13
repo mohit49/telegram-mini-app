@@ -61,7 +61,7 @@ const config: Config = {
   			'gradient-card': 'linear-gradient(90deg,rgba(50,46,53,.5),rgba(15,23,42,.4) 47%,rgba(15,23,42,.4))'
   		},
   		boxShadow: {
-  			km: '1px -19px 16px 1px rgb(17,24,39,1)',
+  			hard: '10px 10px;',
   			yellow: '1px -19px 16px 1px rgba(243,186,47,0.3)',
   			'1xl': '1px -1px 13px 3px #111'
   		},
