@@ -236,7 +236,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
     <p>  <Image className="h-[25px] w-[35px] transform scale-x-[-1]" src={announcmnt} alt="Logo" /></p>
    </div>
 
-   <HomeBanner tetegram={telegram} user={teleUser}/>
+   {(telegram && teleUser) && <HomeBanner tetegram={telegram} user={teleUser}/> }
 <div className="h-[auto] pb-[10vh]">
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]"  >
