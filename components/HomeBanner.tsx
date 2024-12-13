@@ -17,7 +17,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-const HomeBanner = (telegram:any, teleUser:any) => {
+const HomeBanner:any = ({telegram, user}:any) => {
   const router = useRouter();
   return (
     <Swiper className='w-full !py-1'
@@ -47,7 +47,7 @@ const HomeBanner = (telegram:any, teleUser:any) => {
             
       </DrawerTrigger>
       <DrawerContent >
-     <Friend tetegram={telegram} user={teleUser}/>
+     <Friend tetegram={telegram} user={user}/>
         </DrawerContent>
         </Drawer></div>
       </SwiperSlide>
