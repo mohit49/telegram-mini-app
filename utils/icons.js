@@ -58,7 +58,7 @@ export const DownArrow = () =>( <svg fill="#000000" height="20px" width="20px" v
   </svg>
   )
 
-  export const AnimatedDiamond =()=>(<svg className='w-[30px]' xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 70 70">
+  export const AnimatedDiamond =()=>(<svg className='dimond-anim' xmlns="http://www.w3.+org/2000/svg"  viewBox="0 0 70 70">
     
   
   

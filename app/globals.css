@@ -239,7 +239,11 @@ body {
   height: 20px;
 }
 
-
+.dimond-anim {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
 .t1 { fill: #1E3A8A; animation: t1 2s ease-in-out infinite; }
 .t2 { fill: #3B82F6; animation: t2 2s ease-in-out infinite; }
 .t3 { fill: #60A5FA; animation: t3 2s ease-in-out infinite; }
