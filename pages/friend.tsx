@@ -99,7 +99,7 @@ function Friend({ tetegram, user }: FriendProps) {
         <h3 className="text-[35px] font-bold">Invite Friends!</h3>
         <p className="w-[90%] text-[16px]  font-bold">So they can dive into the best game experience with you.</p>
       </div>
-      <div className="text-center px-3 pb-4 m-auto w-full">
+      <div className="text-center px-3 pb-5 m-auto w-full">
         <div className="rounded-[10px] py-2 bg-[#f0f0f0] px-4 w-[90%] items-center mt-10 ml-auto mr-auto mb-3 border border-[#cccccc] flex flex-row justify-between">
           <p className="font-bold">You earned</p>
           <p className="font-bold flex items-center gap-2">{data?.credit}  <Image className="h-[40px] w-[40px] object-cover " src={DimondIcon} alt="Dimond" /></p>
@@ -124,7 +124,7 @@ function Friend({ tetegram, user }: FriendProps) {
                 onClick={handleInviteClick}
                 className="!rounded-[15px] !h-[auto]  w-[90%] !bg-[#ffa4d5] leading-5 !py-4 !text-[20px] !font-bold !text-[#000000] shadowtoonButton"
               >
-                Share Link
+                Invite a friend
               </Button>
             </div>
             <div className="rounded-[10px] p-4 bg-[#f0f0f0] w-[90%] mt-5 ml-auto mr-auto border border-[#cccccc] flex flex-col justify-between">
