@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FlappyBird from "./FlappyBird";
 import Image from "next/image";
-import birdTemplet from "@/public/Template.png";
+import birdTemplet from "@/public/template.png";
 import animgif from "@/public/start_animation.gif";
 import Footer from "./Footer";
 import Background from "./Background";
