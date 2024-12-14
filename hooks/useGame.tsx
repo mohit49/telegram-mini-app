@@ -17,6 +17,7 @@ const WIDTH = 50;
 const FRAMES = ["0px", "50px", "50px", "0px"];
 const defaultState = {
   bird: {
+
     position: { x: 0, y: 0 },
     size: { width: WIDTH, height: HEIGHT },
     animate: {},
@@ -67,6 +68,7 @@ const defaultState = {
     delay: 75,
   },
   rounds: [],
+  homeScreen:false,
   isStarted: false,
   isReady: false,
   window: {
@@ -145,6 +147,7 @@ interface GameState {
     datetime: string;
     key: string;
   }[];
+  homeScreen:boolean
   isStarted: boolean;
   isReady: boolean;
   window: Size;
@@ -181,6 +184,7 @@ if(showModal) {
       draft.isReady = true;
       draft.bird.isVisible = true;
       draft.collision = false;
+      draft.homeScreen = true;
       setBirdCenter(draft);
       createPipes(draft);
       return draft;
@@ -194,7 +198,7 @@ if(showModal) {
   const multiplySpeed = (draft: StateDraft) => {
     const round = _.last(draft.rounds);
     if (round && round.score % draft.multiplier.step === 0) {
-      draft.pipe.distance = draft.pipe.distance * draft.multiplier.distance;
+      draft.pipe.distance = draft.pipe.distance * draft.multiplier.distance + 1;
     }
   };
 
@@ -294,11 +298,14 @@ if(showModal) {
   };
 
   const handleWindowClick = () => {
+
     if (!state.collision) {
       if (state.isStarted) {
+        
         fly();
       } else {
         setState((draft) => {
+          draft.homeScreen = false;
           draft.isStarted = true;
           draft.rounds.push({
             score: 0,
@@ -338,6 +345,7 @@ if(showModal) {
       fly();
     } else {
       setState((draft) => {
+        draft.homeScreen = false;
         draft.isStarted = true;
         draft.rounds.push({
           score: 0,
@@ -356,6 +364,7 @@ if(showModal) {
   const handleExit = async (score: number) => {
     await handleScore(score)
     setShowModal(false);
+    
   };
 
   const checkImpact = (draft: StateDraft) => {
@@ -383,6 +392,7 @@ if(showModal) {
     });
 
     if (groundImpact || pipeImpact) {
+      draft.homeScreen = false;
       draft.bird.isFlying = false;
       draft.isStarted = false;
       draft.collision = true;
