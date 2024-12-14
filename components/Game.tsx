@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FlappyBird from "./FlappyBird";
+import Image from "next/image";
+import birdTemplet from "@/public/Template.png";
+import animgif from "@/public/start_animation.gif";
 import Footer from "./Footer";
 import Background from "./Background";
 import useGame from "@/hooks/useGame";
@@ -11,10 +14,11 @@ import useElementSize from "../hooks/useElementSize";
 import NowScore from "./Nowscore";
 import _ from "lodash";
 import Header from "./Header";
-
+import { useGlobalContext } from "@/pages/_app";
 export default function Game() {
-  const { handleWindowClick, startGame, isReady, rounds } = useGame();
-
+  const [splash, setSplash] = useState(true);
+  const { handleWindowClick, startGame, isReady, rounds ,homeScreen } = useGame();
+  const {gameStatus } = useGlobalContext();
   const [ref, window] = useElementSize();
 
   useEffect(() => {
@@ -39,6 +43,8 @@ export default function Game() {
         {isReady && (
           <>
             <div >
+           
+           {(homeScreen) && <div className="h-[100vh] w-full object-cover fixed z-[100]"><Image src={animgif}  className="w-[150px] bottom-[43vh] left-[18vw] absolute z-[100]" alt="share image" /><Image src={birdTemplet}   alt="share image" /></div>}
               <NowScore />
               <Pipes />
               <FlappyBird />
