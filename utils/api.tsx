@@ -97,6 +97,20 @@ export const fetchTelegramUser = async (userId: string) => {
     }
   };
 
+  export const updateLastLogin = async (payload: any) => {
+    const { userId, lastLogin } = payload;
+    try {
+      const response = await axios.put(`${apiBaseUrl}/last-login/${userId}`, lastLogin, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+
   export const updateLastGamePlay = async (payload: any) => {
     try {
       const response = await axios.put(`${apiBaseUrl}/last-game-played/${payload}`, {
