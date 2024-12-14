@@ -148,7 +148,44 @@ app.put('/update-credit/:tele_id', async (req, res) => {
   }
 });
 
+app.put('/last-login/:tele_id', async (req, res) => {
+  console.log("put-update-credit");
 
+  const { tele_id } = req.params; // Extract tele_id from URL
+  const { lastLogin } = req.body;   // Extract credit from request body
+
+  // Validate that the credit field is provided
+  if (lastLogin == null) {
+      return res.status(400).json({ message: 'login value req is required' });
+  }
+
+  try {
+      // Find the user by tele_id
+      const user = await telegramUser.findOne({ tele_id });
+
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Calculate the updated credit
+    
+
+      // Update the user's credit field
+      const updatedUser = await telegramUser.findOneAndUpdate(
+          { tele_id },
+          { lastLogin },
+          { new: true } // Return the updated document
+      );
+
+      return res.status(200).json({ 
+          message: 'lastLogin updated successfully', 
+          user: updatedUser 
+      });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error updating lastlogin' });
+  }
+});
 
 app.put('/update-referredBy/:tele_id', async (req, res) => {
   console.log("put-update-credit");

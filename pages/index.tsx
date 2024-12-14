@@ -28,7 +28,7 @@ import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, De
 import _, { fill } from "lodash";
 import { Button } from "@/components/ui/button"
 import { useSnackbar } from "notistack";
-import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit } from "@/utils/api";
+import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit, updateLastLogin } from "@/utils/api";
 import {
   Drawer,
   DrawerClose,
@@ -193,18 +193,26 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               setUserDate(data);
               const has24HoursPassed = (lastTimestamp: any) => {
                 if (!lastTimestamp) return true; // If no timestamp exists, treat it as expired
-                const lastTime = new Date(lastTimestamp).getTime();
-                const currentTime = new Date().getTime();
-                return currentTime - lastTime >= 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                const now = new Date();
+                const twentyFourHoursAgo = now.getTime() - (24 * 60 * 60 * 1000);
+                return lastTimestamp < twentyFourHoursAgo;
                 
             }
               if (has24HoursPassed(data.lastLogin)) {
+                var currenttime = new Date()
                 const updatecreditScroreofrefferedBy = await updateCredit({
-                  userId: userData?.tele_id,
+                  userId: user?.id,
                   credit: {
                       credit: 3, // Ensure correct spelling and structure of field names
                   },
-              });     
+              }); 
+              
+              const lastLoginUpdate = await updateLastLogin({
+                userId: user?.id,
+                lastLogin: {
+                    lastLogin:  currenttime.getTime().toString(), // Ensure correct spelling and structure of field names
+                },
+            }); 
              
             }
 
