@@ -16,33 +16,17 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Image from "next/image";
 import announcmnt from "@/public/announcment.png"
-import games from "@/public/gamebg.png"
+import diceGame from "@/public/gamebg.png"
 import flappy from "@/public/flappy-bird.png"
 import funGames from "@/public/fungames.png"
 import gm2 from "@/public/gamebg-card.png"
 import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
-import userImg from "@/public/USER.png"
-import shareHand from "@/public/share-hand.png"
-import { EarnIcon, GamePad, ViewIcon, CopyIcon , QrCode, Withdraw, ShareIcon, DepositeIcon , Activity } from "@/utils/icons";
-import _, { fill } from "lodash";
-import { Button } from "@/components/ui/button"
-import { useSnackbar } from "notistack";
-import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit, updateLastLogin } from "@/utils/api";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 
-import Friend from "./friend";
-import SwiperSlider from "@/components/HomeBanner";
+import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit, updateLastLogin } from "@/utils/api";
+
 import HomeBanner from "@/components/HomeBanner";
+import AppFooter from "@/components/AppFooter";
 interface Game {
   level: number;
   name: string;
@@ -75,7 +59,7 @@ interface HeaderProps {
 const Index: React.FC<IndexProps> = ({ data }) => {
 
   const { userData, setUserDate , setTeleUser, teleUser , setTelegram , telegram } = useGlobalContext();
-  const router = useRouter();
+  
 
 
 
@@ -247,12 +231,13 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    {(telegram && teleUser) && <HomeBanner tetegram={telegram} user={teleUser}/> }
 <div className="h-[auto] pb-[10vh]">
    <div className="games gap-3 px-3 flex flex-row mt-3">
-    <div className="w-[50%]"  >
-  <Link   href={`/flappygame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={flappy} alt="Logo" /></Link> 
+  
+    <div className="w-[50%]">
+    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
 
     </div>
     <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
+    <Image className="h-[auto] w-[100%]" src={diceGame} alt="Logo" />
 
     </div>
    </div>
@@ -271,7 +256,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[100%]">
-    <Image className="h-[auto] w-[100%]" src={funGames} alt="Logo" />
+    <Link   href={`/fungame`} className="rounded-[10px] overflow-hidden block"> <Image className="h-[auto] w-[100%]" src={funGames} alt="Logo" /></Link> 
+   
 
     </div>
    
@@ -314,99 +300,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
       </div>
     </div>
    </div>
- 
-   <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-2 px-0 border-t bg-[#f5f5f5] ">
-        <div className="flex flex-row gap- items-center justify-around w-[100%] items-end ">
-        <Link href={`/`} className="flex flex-col justify-center active-menu">
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-              <div className={(router.pathname === "/"
-                  ? "active-menu svg-icons mt-[-3px]"
-                  : "")}>
-                     <GamePad />
-                  </div>
-              
-            
-             <div className={"text-center text-[11px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
-                  ? "text-[#ffa4d5]"
-                  : "text-[#000000]")}>Games</div>
-            </div>
-          </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-               <Drawer>
-     <DrawerTrigger className="text-left flex flex-col gap-0 p-0 items-center justify-center">
-    
-     <ShareIcon/>
-              <div className={"text-center text-[11px] font-bold text-[#aeaeae] m-0" + (router.pathname === "/"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")}>Share</div>
-      </DrawerTrigger>
-      <DrawerContent >
-     <Friend tetegram={telegram} user={teleUser}/>
-        </DrawerContent>
-        </Drawer>
-            
-            </div>
-          </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-             <ViewIcon/>
-              <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Leaderboard</div>
-            </div>
-          </Link>
-          <Link href={`/`}  className="flex flex-col justify-between">
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-             <Activity/>
-              <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Activity</div>
-            </div>
-          </Link>
-            <div
-              className={
-                "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-                (router.pathname === "/mine"
-                  ? "text-[#00B2FF]"
-                  : "text-[#A4A4A4]")
-              }
-            >
-          
-              <div className="text-center text-[11px] font-bold text-[#aeaeae] m-0"> 
-           
-     <EarnIcon/>
-     Earn
-    
-             </div>
-            </div>
-         
-        </div>
-      </div>
+ <AppFooter/>
+  
     
     </>
   );

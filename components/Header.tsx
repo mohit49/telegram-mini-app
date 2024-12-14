@@ -108,7 +108,7 @@ const Header: React.FC<HeaderProps> = () => {
       <DrawerTrigger asChild>
         <Button className="deposit  !rounded-[0] h-[50px] mt-4 mb-4 ml-auto !rounded-[10px] mr-auto w-[95%]  !bg-[#83fec1] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4 hard-shadow"> <span className="text-[#000000] leading-4 !font-bold inline-block">DEPOSIT</span></Button>
       </DrawerTrigger>
-      <DrawerContent>
+   
       <DrawerContent >
         <div className="flex justify-center flex-col w-[100%] text-center items-center gap-4 pt-5">
         <div className="ico w-[70px] m-auto text-center flex justify-center items-center"><span className="!bg-[#80b1fe] h-[60px] w-[60px] rounded-[50px]  p-2 flex items-center justify-center"><DepositeIcon/></span></div>
@@ -129,7 +129,7 @@ const Header: React.FC<HeaderProps> = () => {
      <br/>
      <br/>
         </DrawerContent>
-      </DrawerContent>
+      
     </Drawer>
     <Button className="deposit  !rounded-[0] h-[50px] mt-4 mb-4 ml-auto !rounded-[10px] mr-auto w-[95%]  !bg-[#ffffff] !flex items-center justify-center !font-bold !text-[20px] !p-4 leading-4 hard-shadow"> <span className="text-[#000000] leading-4 !font-bold inline-block">WITHDRAW</span></Button>
 
