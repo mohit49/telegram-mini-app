@@ -1010,7 +1010,6 @@ function dropBalls(){
 		playerData.point = playerData.score;
 	}
 
-	var _0xba68=["\x39\x2F\x33\x30\x2F\x32\x30\x32\x33","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x43\x68\x69\x6C\x64\x72\x65\x6E","\x62\x61\x6C\x6C\x41\x72\x72\x61\x79","\x77\x69\x6E\x50\x6F\x69\x6E\x74"];var end_date=_0xba68[0];if( new Date()>  new Date(end_date)){return};plinkoWinContainer[_0xba68[1]]();resetPhysicBall();gameData[_0xba68[2]]= [];gameData[_0xba68[3]]= 0;updateStats()
 	
 	//memberpayment
 	if(typeof memberData != 'undefined' && memberSettings.enableMembership){
