@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 
   
 const PlinkoGame = () => {
+  const [scrtipAdded , SetScrtipAdded] = useState(false);
     useEffect(() => {
       const loadScripts = async () => {
         const scripts = [
@@ -17,8 +18,9 @@ const PlinkoGame = () => {
           "/plinko/p2.js",
           "/plinko/game.js",
           "/plinko/mobile.js",
-          "/plinko/main.js",
           "/plinko/loader.js",
+          "/plinko/main.js",
+        
           "/plinko/init.js",
         ];
   
@@ -31,6 +33,7 @@ const PlinkoGame = () => {
           // Remove script after it's loaded
           scriptTag.onload = () => {
             console.log(`${script} loaded.`);
+            SetScrtipAdded(true)
           };
           scriptTag.onerror = () => {
             console.error(`Failed to load ${script}.`);
@@ -47,10 +50,7 @@ const PlinkoGame = () => {
       };
     }, []);
   
-    return (
-        <div id="canvasHolder">
-        <canvas id="gameCanvas" width="1280" height="768"></canvas>
-    </div>
+    return (scrtipAdded && <div id="canvasHolder"> <canvas id="gameCanvas" width="1280" height="768"></canvas></div> 
     );
   };
   
@@ -66,8 +66,8 @@ const Plinko: React.FC = () => {
  
 
 
-        <div id="mainLoader">
-          <img src="assets/loader.png" alt="Loading..." />
+        <div id="mainLoader" className="w-full h-[100vh] background-[#ffa4d5] flex justify-center items-center flex-row">
+          <img src="/images/plinko/loader.png" alt="Loading..." />
           <br />
           <span>0</span>
         </div>
