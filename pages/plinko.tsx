@@ -66,7 +66,7 @@ const Plinko: React.FC = () => {
  
 
 
-        <div id="mainLoader" className="w-full h-[100vh] background-[#48ef9c] !flex justify-col gap-3 items-center flex-row">
+        <div id="mainLoader" className="w-full h-[100vh] bg-[#48ef9c] flex justify-center gap-3 items-center flex-col">
           <img src="/images/plinko/loader.png" alt="Loading..." />
           <br />
           <span className="font-bold">0</span>
