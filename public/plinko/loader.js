@@ -7,7 +7,7 @@
  * START CANVAS PRELOADER - This is the function that runs to preload canvas asserts
  * 
  */
-function initPreload(){
+ function initPreload(){
 	toggleLoader(true);
 	
 	checkMobileEvent();
@@ -35,7 +35,7 @@ function initPreload(){
 			{src:'/images/plinko/item_drag.png', id:'itemDrag'},
 			{src:'/images/plinko/item_stat_display.png', id:'itemStatDisplay'},
 			{src:'/images/plinko/item_plinko.png', id:'itemPlinko'},
-			{src:'/images/plinkoitem_plinko_p.png', id:'itemPlinkoP'},
+			{src:'/images/plinko/item_plinko_p.png', id:'itemPlinkoP'},
 
 			{src:'/images/plinko/button_confirm.png', id:'buttonConfirm'},
 			{src:'/images/plinko/button_cancel.png', id:'buttonCancel'},

@@ -233,7 +233,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    <div className="games gap-3 px-3 flex flex-row mt-3">
   
     <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" />
+    <Link   href={`/plinko`} className="rounded-[10px] overflow-hidden block">  <Image className="h-[auto] w-[100%]" src={gm2} alt="Logo" /></Link>
 
     </div>
     <div className="w-[50%]">
