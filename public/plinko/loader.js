@@ -7,7 +7,7 @@
  * START CANVAS PRELOADER - This is the function that runs to preload canvas asserts
  * 
  */
- function initPreload(){
+function initPreload(){
 	toggleLoader(true);
 	
 	checkMobileEvent();
