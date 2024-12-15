@@ -70,7 +70,7 @@ function buildGameCanvas(){
 	buttonStart = new createjs.Bitmap(loader.getResult('buttonStart'));
 	centerReg(buttonStart);
 	buttonStart.x = canvasW/2;
-	buttonStart.y = canvasH/100 * 65;
+	buttonStart.y = canvasH/100 * 40;
 	
 	//game
 	itemStatCredit = new createjs.Bitmap(loader.getResult('itemStatDisplay'));
@@ -446,7 +446,7 @@ function changeCanvasViewport(){
 			logoP.visible = true;
 			
 			buttonStart.x = canvasW/2;
-			buttonStart.y = canvasH/100 * 70;
+			buttonStart.y = canvasH/100 * 65;
 
 			//game
 			
