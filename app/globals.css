@@ -707,7 +707,7 @@ button {
       margin-bottom: 10px;
     }
     
-    button {
+    .coin-flip-game button {
       background-color: #ffffff;
       color: #000000;
      
@@ -722,7 +722,7 @@ button {
     
 
     
-    button.selected {
+    .coin-flip-game  button.selected {
     
     }
     
