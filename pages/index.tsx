@@ -19,9 +19,10 @@ import announcmnt from "@/public/announcment.png"
 import diceGame from "@/public/gamebg.png"
 import flappy from "@/public/flappy-bird.png"
 import funGames from "@/public/fungames.png"
-import gm2 from "@/public/gamebg-card.png"
+import gm2 from "@/public/plinko-cover.png"
 import gm3 from "@/public/raceing.png"
 import gm4 from "@/public/crdwe.png"
+import coinFLip from "@/public/coin.png"
 
 import { sendUserData, updateReferralDetails, updateRefferedBy , fetchTelegramUser , updateRefferedUnlock, updateCredit, updateLastLogin } from "@/utils/api";
 
@@ -237,7 +238,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
     </div>
     <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={diceGame} alt="Logo" />
+    <Link   href={`/coinflip`} className="rounded-[10px] overflow-hidden block">   <Image className="h-[auto] w-[100%]" src={coinFLip} alt="Logo" /></Link>
 
     </div>
    </div>

@@ -20,7 +20,7 @@
         "@mui/material": "^5.15.17",
         "@mui/styled-engine-sc": "^6.0.0-alpha.18",
         "@prisma/client": "^5.18.0",
-        "@radix-ui/react-dialog": "^1.1.2",
+        "@radix-ui/react-dialog": "^1.1.4",
         "@radix-ui/react-slot": "^1.1.0",
         "@reduxjs/toolkit": "^2.2.5",
         "@tonconnect/ui-react": "^2.0.9",
