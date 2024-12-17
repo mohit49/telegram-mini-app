@@ -679,7 +679,7 @@ button {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-     
+     background: #98e2ff !important;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 0px;
@@ -708,7 +708,7 @@ button {
     }
     
     .coin-flip-game button {
-      background-color: #ffffff;
+     
       color: #000000;
      
       border: 2px #000000 solid;
@@ -716,7 +716,7 @@ button {
     
      
       cursor: pointer;
-      margin: 10px;
+      
       transition: all 0.3s ease;
     }
     
