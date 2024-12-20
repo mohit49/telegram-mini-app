@@ -696,6 +696,12 @@ button {
       color: #333;
       margin-bottom: 20px;
     }
+    .side-selection {
+      background: #ffffff;
+      width: auto;
+      padding: 2px;
+      border: 1px solid #98a9b0;
+    }
     
     .bet-options, .side-selection {
       margin-top: 00px;
@@ -707,24 +713,13 @@ button {
       margin-bottom: 10px;
     }
     
-    .coin-flip-game button {
-     
-      color: #000000;
-     
-      border: 2px #000000 solid;
-     
-    
-     
-      cursor: pointer;
-      
-      transition: all 0.3s ease;
+    .side-selection button {
+     padding: 8px 0px;
+     width: 120px;
+     color: #7d7d7d;
     }
     
 
-    
-    .coin-flip-game  button.selected {
-    
-    }
     
     .flip-button {
       font-size: 20px;
@@ -840,3 +835,36 @@ button {
   }
 }
    
+
+
+
+
+
+
+
+
+
+
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.racetrack {
+  background-color: #333;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.car {
+  width: 50px;
+  height: 80px;
+  background-color: red;
+  position: absolute;
+  transition: all 0.1s ease-in-out;
+}
