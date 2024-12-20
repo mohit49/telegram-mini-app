@@ -90,7 +90,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
 
   return (
    <>
-   {!play && <div className='fixed w-full h-full left-0 top-0' ><Image onClick={playfunctionality} alt="coin flips" src={splash} className='w-full object-cover'/></div>}
+   {!play && <div className='fixed w-full h-full left-0 top-0 bg-[#80b1fe]' ><Image onClick={playfunctionality} alt="coin flips" src={splash} className='h-full object-cover'/></div>}
     {play && <div className="coin-flip-game bg-[#98e2ff] w-full !justify-between">
       <div className='flex flex-row justify-between w-full px-[20px]'>
         <div className="balance ">

@@ -845,7 +845,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   background-color: #f4f4f9;
 }
@@ -924,9 +924,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
-  background-color: #f4f4f9;
+  background-color: #f6e77e;
 }
 
 .splash-container h1 {
