@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import head from "@/public/coinflip/head.png";
 import tails from "@/public/coinflip/tails.png";
 import Image from 'next/image';
-
+import splash from "@/public/coinflip/splash.png";
 type BetMultiplier = 0.5 | 1 | 1.5 | 2;
 
 interface CoinFlipProps {
@@ -19,7 +19,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
   const [flipResult, setFlipResult] = useState<'heads' | 'tails' | null>(null); // To store the result of the flip
   const [winningAmount, setWinningAmount] = useState<number | null>(null); // To store the winning amount
   const [totalWinnings, setTotalWinnings] = useState<number>(0); // New state to track total winnings
-
+  const [play, setPlay] = useState<boolean>(false);
   // Predefined bet amounts
   const betAmounts = [1, 10, 20, 50];
 
@@ -84,9 +84,14 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
       setBetMultiplier(prevMultiplier => (prevMultiplier - 0.5) as BetMultiplier);
     }
   };
+  const playfunctionality =()=>{
+    setPlay(true)
+  }
 
   return (
-    <div className="coin-flip-game bg-[#98e2ff] w-full !justify-between">
+   <>
+   {!play && <div className='fixed w-full h-full left-0 top-0' ><Image onClick={playfunctionality} alt="coin flips" src={splash} className='w-full object-cover'/></div>}
+    {play && <div className="coin-flip-game bg-[#98e2ff] w-full !justify-between">
       <div className='flex flex-row justify-between w-full px-[20px]'>
         <div className="balance ">
           <p className='text-[30px] font-bold text-[#ff68b9] m-0'>{playerBalance} TON</p>
@@ -192,8 +197,8 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
         //</div>
        }
       </div>
-    </div>
-
+    </div>}
+    </> 
   );
 };
 

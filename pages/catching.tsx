@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import SplashScreen from "@/public/catching/splash.png"
+import SplashScreen from "@/public/catching/splash.gif"
 import TonLogo from "@/public/dimond.png"
 import { TonIcon } from '@/utils/icons';
 
