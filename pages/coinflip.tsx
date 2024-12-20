@@ -86,12 +86,12 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
   };
 
   return (
-    <div className="coin-flip-game bg-[#ffffff] w-full !justify-between">
+    <div className="coin-flip-game bg-[#98e2ff] w-full !justify-between">
       <div className='flex flex-row justify-between w-full px-[20px]'>
         <div className="balance ">
-          <p className='text-[45px] font-bold text-[#ff68b9] m-0'>${playerBalance}</p>
+          <p className='text-[45px] font-bold text-[#ff68b9] m-0'>{playerBalance} TON</p>
         </div>
-        <div> <p className='text-[45px] font-bold text-[#ff68b9] m-0'>${totalWinnings} </p></div>
+        <div> <p className='text-[45px] font-bold text-[#ff68b9] m-0'>{totalWinnings} TON</p></div>
       </div>
       <div className='winig-info'>
         {result && <div className="result text-[30px] !m-0">{result}</div>}
@@ -135,15 +135,15 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
           </div>
         </div>
       </div>
-      <div className="side-selection flex flex-row gap-0 w-full justify-center rounded-xl overflow-hidden">
+      <div className="side-selection flex flex-row gap-0 w-full justify-center rounded-xl overflow-hidden ">
         <button
-          className={(selectedSide === 'heads' ? 'selected bg-[#02d0ad] text-[#ffe980] border-[#02d0ad] ' : 'border-r-0') + " " + "m-0 px-[30px] text-[25px] rounded-none rounded-l-[50px]"}
+          className={(selectedSide === 'heads' ? 'selected bg-[#82fec2] text-[#1b9759] border-[#02d0ad] ' : 'border-r-0') + " " + "m-0 px-[20px] text-[20px] rounded-none rounded-l-[10px]"}
           onClick={() => handleSideSelect('heads')}
         >
           Heads
         </button>
         <button
-          className={(selectedSide === 'tails' ? 'selected text-[#ffe980] bg-[#3088f7] border-[#3088f7]' : 'border-l-0') + " " + "m-0 px-[30px] text-[25px] rounded-none rounded-r-[50px]"}
+          className={(selectedSide === 'tails' ? 'selected text-[#1b9759] bg-[#82fec2] border-[#3088f7]' : 'border-l-0 bg-[#ffffff]') + " " + "m-0 px-[20px] text-[20px] rounded-none rounded-r-[10px]"}
           onClick={() => handleSideSelect('tails')}
         >
           Tails
@@ -155,7 +155,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
             <p className='font-bold !text-[30px] !text-[#ffffff]'> Bet </p>
             <div className="bet-controls flex items-center flex-row">
               <button onClick={decreaseBetByFive} className='bg-[#ffe980] border-none rounded-lg text-[#000000] font-bold !text-[30px] leading-[100%] p-0 !w-[40px] !h-[40px] shadowtoonButton'>-</button>
-              <input className='w-[80px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
+              <input className='w-[60px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
                 type="number"
                 value={betAmount}
                 onChange={handleBetAmountInputChange}
@@ -169,7 +169,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
             <p className='font-bold !text-[30px] !text-[#ffffff]'> Multiplier</p>
             <div className="multiplier-controls flex flex-row items-center">
               <button onClick={decreaseMultiplierByHalf} className='bg-[#ffe980] border-none rounded-lg text-[#000000] font-bold !text-[30px] leading-[100%] p-0 !w-[40px] !h-[40px] shadowtoonButton'>-</button>
-              <input className='w-[80px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
+              <input className='w-[60px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
                 type="number"
                 value={betMultiplier}
                 readOnly
@@ -181,7 +181,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
 
 
 
-        <button className="shadowtoonButton bg-[#ffe980] border-none rounded-lg !text-[25px] mt-[25px] w-[250px] mb-[50px]" onClick={handleFlip} disabled={isFlipping}>
+        <button className="shadowtoonButton bg-[#ffe980] border-none rounded-lg !text-[25px] mt-[25px] w-[250px] mb-[50px] py-[10px]" onClick={handleFlip} disabled={isFlipping}>
           Flip Doodle
         </button>
 
