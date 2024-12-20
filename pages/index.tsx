@@ -15,6 +15,7 @@ import path from "path";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Image from "next/image";
+import Catching from "@/public/catching.png"
 import announcmnt from "@/public/announcment.png"
 import diceGame from "@/public/gamebg.png"
 import flappy from "@/public/flappy-bird.png"
@@ -244,7 +245,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
    </div>
    <div className="games gap-3 px-3 flex flex-row mt-3">
     <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm3} alt="Logo" />
+    <Link   href={`/catching`} className="rounded-[10px] overflow-hidden block">   <Image className="h-[auto] w-[100%]" src={Catching} alt="Logo" /></Link>
 
     </div>
     <div className="w-[50%]">
