@@ -48,7 +48,7 @@
   font-family: 'Aglet Sans';
   src: url('/fonts/AgletSans-ExtraLight.woff2') format('woff2'),
       url('/fonts/AgletSans-ExtraLight.woff') format('woff');
-  font-weight: 250;
+  font-weight: 180;
   font-style: normal;
   font-display: swap;
 }
@@ -75,7 +75,7 @@
   font-family: 'Aglet Sans';
   src: url('/fonts/AgletSans-ExtraLightItalic.woff2') format('woff2'),
       url('/fonts/AgletSans-ExtraLightItalic.woff') format('woff');
-  font-weight: 250;
+  font-weight: 180;
   font-style: italic;
   font-display: swap;
 }
@@ -483,7 +483,7 @@ button {
     
     /*-- Browser Not Support -- */
     #notSupportHolder{ width:90%; margin:5% auto; position:relative; color:#fff; text-align:center; font-size:35px; font-family:'azonixregular'; display:none;}
-    .notSupport{margin-top:250px;}
+    .notSupport{margin-top:180px;}
     
     @-moz-keyframes spin { 50% { -moz-transform: rotate(0deg); } 100% { -moz-transform: rotate(0deg); } }
     @-webkit-keyframes spin { 50% { -webkit-transform: rotate(90deg); } 100% { -webkit-transform: rotate(0deg); } }
@@ -679,14 +679,14 @@ button {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-     
+     background: #98e2ff !important;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       padding: 0px;
       text-align: center;
       overflow: hidden;
       position: relative;
-     flex-wrap: wrap;
+     flex-wrap: nowrap;
       justify-content: center;
     }
     
@@ -704,11 +704,11 @@ button {
     }
     
     .bet-options, .side-selection {
-      margin-top: 20px;
+      margin-top: 00px;
     }
     
     .bet-options p, .side-selection p {
-      font-size: 18px;
+     
       color: #333;
       margin-bottom: 10px;
     }
@@ -767,8 +767,8 @@ button {
     
  
     .coinanimation{
-      width: 250px;
-      height: 250px;
+      width: 200px;
+      height: 200px;
       transform-style: preserve-3d;
       animation: flip .8s infinite ease-in-out;
       transform-style: preserve-3d;
@@ -777,8 +777,8 @@ button {
 
     .side{
       position: absolute;
-      width: 250px;
-      height: 250px;
+      width: 200px;
+      height: 200px;
       background-size: cover;
       backface-visibility: hidden;
      
@@ -809,7 +809,7 @@ button {
       }
     }
 
-    .blurMt { animation: blur 250ms infinite; }
+    .blurMt { animation: blur 180ms infinite; }
 
 @keyframes blur {
 

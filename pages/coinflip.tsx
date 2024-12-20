@@ -93,7 +93,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
         </div>
         <div> <p className='text-[45px] font-bold text-[#ff68b9] m-0'>{totalWinnings} TON</p></div>
       </div>
-      <div className='winig-info'>
+      <div className='winig-info min-h-[60px]'>
         {result && <div className="result text-[30px] !m-0">{result}</div>}
 
         {winningAmount !== null && (
@@ -106,7 +106,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
           </div>
         )}
       </div>
-      <div className='relative h-[250px] w-[250px] flex'>
+      <div className='relative h-[200px] w-[200px] flex'>
         <div className={(isFlipping ? "coin-flip-animation blurMt" : "static-coin") + " " + "coin-creative"}>
           <div className="coin w-full h-full">
             {isFlipping && (
@@ -140,19 +140,19 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
           className={(selectedSide === 'heads' ? 'selected bg-[#82fec2] text-[#1b9759] border-[#02d0ad] ' : 'border-r-0') + " " + "m-0 px-[20px] text-[20px] rounded-none rounded-l-[10px]"}
           onClick={() => handleSideSelect('heads')}
         >
-          Heads
+          HEAD
         </button>
         <button
           className={(selectedSide === 'tails' ? 'selected text-[#1b9759] bg-[#82fec2] border-[#3088f7]' : 'border-l-0 bg-[#ffffff]') + " " + "m-0 px-[20px] text-[20px] rounded-none rounded-r-[10px]"}
           onClick={() => handleSideSelect('tails')}
         >
-          Tails
+          TAILS
         </button>
       </div>
-      <div className='bottom-area bg-[#ff68b9] w-full overflow-x-hidden mt-[50px] rounded-t-[30px]'>
+      <div className='bottom-area bg-[#ff68b9] w-full overflow-x-hidden overflow-y-hidden mt-[20px] rounded-t-[30px]'>
         <div className='flex-row flex justify-center gap-[10px]'>
           <div className="bet-options pt-3">
-            <p className='font-bold !text-[30px] !text-[#ffffff]'> Bet </p>
+            <p className='font-bold !text-[25px] m-0 !text-[#ffffff]'> Bet </p>
             <div className="bet-controls flex items-center flex-row">
               <button onClick={decreaseBetByFive} className='bg-[#ffe980] border-none rounded-lg text-[#000000] font-bold !text-[30px] leading-[100%] p-0 !w-[40px] !h-[40px] shadowtoonButton'>-</button>
               <input className='w-[60px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
@@ -166,7 +166,7 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
           </div>
 
           <div className="bet-options pt-3">
-            <p className='font-bold !text-[30px] !text-[#ffffff]'> Multiplier</p>
+            <p className='font-bold !text-[25px] !text-[#ffffff] m-0 '> Multiplier</p>
             <div className="multiplier-controls flex flex-row items-center">
               <button onClick={decreaseMultiplierByHalf} className='bg-[#ffe980] border-none rounded-lg text-[#000000] font-bold !text-[30px] leading-[100%] p-0 !w-[40px] !h-[40px] shadowtoonButton'>-</button>
               <input className='w-[60px] h-[40px] p-2 !rounded-lg text-[20px] font-bold shadowtoonButton'
