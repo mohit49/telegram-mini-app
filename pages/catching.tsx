@@ -11,7 +11,7 @@ interface Block {
   revealed: boolean;
 }
 
-const App: React.FC = () => {
+const Catching: React.FC = () => {
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
@@ -22,6 +22,7 @@ const App: React.FC = () => {
   const [popup, setPopUp] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0); // Track revealed non-bomb blocks
   const [currentBet, setCurrentBet] = useState<number>(0); // Track current bet for the session
+  const [currentWinnings, setCurrentWinnings] = useState<number>(0); // Track winnings during the game
 
   useEffect(() => {
     if (gameStarted) {
@@ -50,6 +51,7 @@ const App: React.FC = () => {
     setGameOver(false);
     setMessage('');
     setRevealedCount(0); // Reset revealed count when game starts
+    setCurrentWinnings(0); // Reset winnings when game starts
   };
 
   // Handle the block click event
@@ -63,9 +65,10 @@ const App: React.FC = () => {
       setBlocks(newBlocks);
 
       if (block.isBomb) {
-        // Game over: Deduct all of the current bet from the balance if a bomb is hit
-        setMessage(`Game Over! You hit the bomb. You lost your bet of $${currentBet}.`);
-        setBalance(balance - currentBet); // Deduct entire bet if bomb is hit
+        // Game over: Deduct both the bet and all winnings if a bomb is hit
+        const totalLoss = currentBet + currentWinnings;
+        setMessage(`Game Over! You hit the bomb. You lost $${totalLoss}.`);
+        setBalance(balance - totalLoss); // Deduct bet and winnings if bomb is hit
         setGameOver(true);
         setTimeout(() => {
           setPopUp(true); // Show the popup after 1 second
@@ -74,12 +77,14 @@ const App: React.FC = () => {
         // Player wins money on a correct tap (not a bomb)
         setRevealedCount(revealedCount + 1); // Increment revealed blocks count
         const earnedAmount = betAmount * 2; // Player earns double the bet amount for each correct tap
-        setBalance(balance + earnedAmount);
+        setCurrentWinnings(currentWinnings + earnedAmount); // Add earnings to current winnings
+        setBalance(balance + earnedAmount); // Add winnings to balance
         setMessage(`Keep going! Bet: $${betAmount}`);
         
         // If all non-bomb blocks are revealed, the player wins the game
         if (revealedCount === blocks.length - 3) {
-          setMessage(`You won! Total earnings: $${betAmount * (revealedCount + 1)}`);
+          const totalWinnings = currentWinnings + betAmount; // Add the original bet amount to winnings
+          setMessage(`You won! Total earnings: $${totalWinnings}`);
           setGameOver(true);
           setTimeout(() => {
             setPopUp(true);
@@ -106,9 +111,9 @@ const App: React.FC = () => {
 
   // Cash out functionality
   const handleCashOut = () => {
-    const winnings = betAmount * revealedCount; // Calculate winnings based on revealed non-bomb blocks
-    setBalance(balance + winnings); // Add winnings to balance
-    setMessage(`You cashed out! Total earnings: $${winnings}`);
+    const totalWinnings = currentWinnings + betAmount; // Calculate total winnings (bet amount + revealed non-bomb blocks)
+    setBalance(balance + totalWinnings); // Add winnings to balance
+    setMessage(`You cashed out! Total earnings: $${totalWinnings}`);
     setGameOver(true); // End the game
     setPopUp(true); // Show the popup
   };
@@ -147,7 +152,7 @@ const App: React.FC = () => {
               onClick={() => handleBlockClick(block.id)}
               className={`block ${block.revealed ? (block.isBomb ? 'bomb' : 'revealed') : ''}`}
             >
-              {block.revealed && !block.isBomb && '✅'}
+              {block.revealed && !block.isBomb && <TonIcon />}
               {block.revealed && block.isBomb && '💣'}
             </div>
           ))}
@@ -219,4 +224,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Catching;
