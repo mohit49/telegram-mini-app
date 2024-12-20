@@ -89,9 +89,9 @@ const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
     <div className="coin-flip-game bg-[#98e2ff] w-full !justify-between">
       <div className='flex flex-row justify-between w-full px-[20px]'>
         <div className="balance ">
-          <p className='text-[45px] font-bold text-[#ff68b9] m-0'>{playerBalance} TON</p>
+          <p className='text-[30px] font-bold text-[#ff68b9] m-0'>{playerBalance} TON</p>
         </div>
-        <div> <p className='text-[45px] font-bold text-[#ff68b9] m-0'>{totalWinnings} TON</p></div>
+        <div> <p className='text-[30px] font-bold text-[#ff68b9] m-0'>{totalWinnings} TON</p></div>
       </div>
       <div className='winig-info min-h-[60px]'>
         {result && <div className="result text-[30px] !m-0">{result}</div>}
