@@ -135,7 +135,7 @@ const Catching: React.FC = () => {
   const renderSplashScreen = () => {
     return (
       <div onClick={() => setGameStarted(true)} className="splash-container overflow-hidden">
-        <Image alt="splash" className='w-full object-fill' src={SplashScreen} />
+        <Image alt="splash" className='w-full object-cover' src={SplashScreen} />
       </div>
     );
   };
