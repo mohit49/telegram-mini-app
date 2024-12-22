@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FlappyBird from "./FlappyBird";
 import Image from "next/image";
-import birdTemplet from "@/public/template.png";
+import birdTemplet from "@/public/flappy.gif"
 import animgif from "@/public/start_animation.gif";
 import Footer from "./Footer";
 import Background from "./Background";
@@ -44,7 +44,7 @@ export default function Game() {
           <>
             <div >
            
-           {(homeScreen) && <div className="h-[100vh] w-full object-cover fixed z-[100]"><Image src={animgif}  className="w-[150px] bottom-[40%] left-[18vw] absolute z-[100]" alt="share image" /><Image src={birdTemplet}   alt="share image" /></div>}
+           {(homeScreen) && <div className="h-[100vh] w-full object-cover fixed z-[100]"><Image src={birdTemplet}   alt="share image" /></div>}
               <NowScore />
               <Pipes />
               <FlappyBird />
