@@ -1027,3 +1027,222 @@ h2 {
 .popup {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+
+
+.game-area {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  background-color: black;
+  border: 2px solid white;
+  margin: auto;
+  overflow: hidden;
+}
+
+.paddle {
+  position: absolute;
+  width: 10px;
+  height: 100px;
+  background-color: white;
+}
+
+.player-paddle {
+  left: 0;
+}
+
+.computer-paddle {
+  right: 0;
+}
+
+.ball {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.score {
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+
+
+
+
+
+/* Overall Game Container */
+.spinwheel.game-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #c4c5fe;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  box-sizing: border-box;
+}
+.spinwheel.game-container .bhdLno {
+  width: 300px;
+  height: 300px;
+}
+.spinwheel.game-container * {
+  box-sizing: border-box;
+}
+.spinwheel .game-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Control Section */
+.spinwheel .control-section {
+  margin-bottom: 20px;
+}
+
+.spinwheel .control-section label {
+  font-size: 18px;
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.spinwheel .multiplier-control, .bet-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinwheel .multiplier-btn, .bet-btn {
+  background-color: #4caf50;
+  color: white;
+  font-size: 20px;
+  border: none;
+ 
+  border-radius: 5px;
+ 
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.spinwheel .multiplier-btn:hover, .bet-btn:hover {
+  background-color: #45a049;
+}
+
+.spinwheel .multiplier-amount, .bet-amount {
+  font-size: 24px;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Total Balance */
+.spinwheel .balance-info {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Spin Button */
+.spinwheel .spin-btn {
+  background-color: #ff5722;
+  color: white;
+  font-size: 18px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.spinwheel .spin-btn:hover {
+  background-color: #e64a19;
+}
+
+.spinwheel .spin-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Result Message */
+.spinwheel .result-message {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Wheel styling */
+.spinwheel .Wheel {
+  margin-top: 30px;
+  position: relative;
+  height: 350px;
+  width: 350px;
+  border-radius: 50%;
+}
+/* CSS for the Pop-up Box */
+.spinwheel .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Attractive box-shadow */
+  z-index: 1000;
+  display: none; /* Hidden by default, will be shown dynamically */
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  border: 2px solid transparent;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards; /* Fade-in effect */
+}
+
+/* Success and Error Messages */
+.spinwheel .success {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #388E3C;
+}
+
+.spinwheel .error {
+  background-color: #f44336;
+  color: white;
+  border-color: #D32F2F;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* For overlay effect (optional) */
+.spinwheel .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none; /* Hidden by default */
+}
