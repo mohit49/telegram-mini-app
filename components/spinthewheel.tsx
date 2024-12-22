@@ -37,7 +37,7 @@ interface SpinResult {
 }
 
 // Define data for the wheel with multipliers
-const data: WheelOption[] = [
+const data: any = [
   { option: '1x', multiplier: 1, style: { backgroundColor: '#48ef9d', textColor: 'black', fontSize: '40' } },
   { option: '2x', multiplier: 2, style: { backgroundColor: '#ffa4d5', textColor: 'black', fontSize: '40' } },
   { option: '3x', multiplier: 3, style: { backgroundColor: '#80b1fe', textColor: 'black', fontSize: '40' } },
