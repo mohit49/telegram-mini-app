@@ -6,6 +6,7 @@ import trophy from '@/public/trophy.gif';
 import flappySad from '@/public/overbird.png';
 import { Button } from './ui/button';
 import { TonIcon } from '@/utils/icons';
+import SpinSplash from "@/public/spin-wheel/spinSplash.jpg"
 
 // Define types for the data structure and spin result
 interface ImageProps {
@@ -55,6 +56,7 @@ const SpinWheelWithBetting: React.FC = () => {
   const [spinResult, setSpinResult] = useState<SpinResult | null>(null); // To store result before deduction
   const [isSpinning, setIsSpinning] = useState<boolean>(false); // Flag to track spinning status
   const [win, setWin] = useState<boolean | null>(null);
+  const [splashScreen, setSplashScreen] = useState<boolean | null>(true);
 
   // Handle spin button click
   const handleSpinClick = (): void => {
@@ -129,8 +131,14 @@ const SpinWheelWithBetting: React.FC = () => {
     setWin(null);
   };
 
+  const closeSplash =() :void =>{
+    setSplashScreen(false)
+  }
+
   return (
-    <div className="game-container spinwheel">
+    <>
+    {splashScreen && <div onClick={closeSplash}><Image alt="splash" className='w-full' src={SpinSplash}/></div>}
+    {!splashScreen && <div className="game-container spinwheel">
       <div className="balance-info flex flex-row justify-center">
         <p className="font-bold text-[35px] flex flex-row items-center gap-[10px]">
           {totalAmount} <TonIcon />
@@ -222,7 +230,8 @@ const SpinWheelWithBetting: React.FC = () => {
           </Button>
         </div>
       )}
-    </div>
+    </div>}
+    </>
   );
 };
 
