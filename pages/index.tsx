@@ -22,6 +22,7 @@ import flappy from "@/public/flappy-bird.png"
 import funGames from "@/public/fungames.png"
 import gm2 from "@/public/spinwheel.png"
 import gm3 from "@/public/raceing.png"
+import Lottery from "@/public/lotterythumb.png"
 import gm4 from "@/public/crdwe.png"
 import coinFLip from "@/public/coin.png"
 
@@ -249,8 +250,8 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
     </div>
     <div className="w-[50%]">
-    <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
-
+    <Link   href={`/lottry`} className="rounded-[10px] overflow-hidden block">   <Image className="h-[auto] w-[100%]" src={gm4} alt="Logo" />
+</Link>
     </div>
    </div>
 
