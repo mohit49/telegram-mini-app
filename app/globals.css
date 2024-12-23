@@ -125,7 +125,9 @@
   font-display: swap;
 }
 
-
+.exitIcon {
+  width: 30px
+}
 
 @tailwind base;
 @tailwind components;
