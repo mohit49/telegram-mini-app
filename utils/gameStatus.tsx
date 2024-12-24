@@ -29,6 +29,8 @@ const gameStatus = () => {
                         userId: referralUnlockResponse.user.refferedby,
                         credit: {
                             credit: 5, // Ensure correct spelling and structure of field names
+                              transactionType: "referral",
+                    reason: `Reward On Referral ${userData.tele_id}`
                         },
                     });
                     console.log("Referral unlock details updated:", referralUnlockResponse);
@@ -59,6 +61,8 @@ const gameStatus = () => {
                         userId: userData?.tele_id,
                         credit: {
                             credit: 5, // Ensure correct spelling and structure of field names
+                                   transactionType: "gameplay",
+                    reason: "Reward on Daily Game Play"
                         },
                     });
                 }
@@ -72,6 +76,8 @@ const gameStatus = () => {
                         userId: userData?.tele_id,
                         credit: {
                             credit: 5, // Ensure correct spelling and structure of field names
+                              transactionType: "gameplay",
+                    reason: "Reward on Daily Game Play"
                         },
                     });
                 }
