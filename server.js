@@ -4,10 +4,9 @@ const mongoose = require('mongoose');
 
 
 const app = express();
-const teleUser = require('./backend/services/profile');
-const transactionsRouter = require('./backend/services/tonwallet');
-const referralRoutes = require('./routes/referralRoutes');
-const creditRoutes = require('./routes/creditRoutes');
+const teleUser = require('./backend/routes/profile');
+const transactionsRouter = require('./backend/routes/tonwallet');
+
 
 // Mtele_iddleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -23,13 +22,16 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   });
 
 
-
+ 
 
 // telegram user api
-app.use('/api/', teleUser);
-
+app.use('/', teleUser);
+app.use((req, res, next) => {
+  console.log(`Request received: ${req.method} ${req.url}`);
+  next();
+});
 // telegram TonWallet
-app.use('/api/transactions', transactionsRouter);
+app.use('/transactions', transactionsRouter);
 
 
 

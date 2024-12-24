@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const telegramUserSchema = new mongoose.Schema({
   tele_id: {
     type: String,
