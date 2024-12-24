@@ -30,7 +30,8 @@ const gameStatus = () => {
                         credit: {
                             credit: 5, // Ensure correct spelling and structure of field names
                               transactionType: "referral",
-                    reason: `Reward On Referral ${userData.tele_id}`
+                    reason: `Reward On Referral of ${userData.tele_id}`,
+                    referralId: userData.tele_id
                         },
                     });
                     console.log("Referral unlock details updated:", referralUnlockResponse);
