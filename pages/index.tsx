@@ -5,11 +5,7 @@ import { GetStaticProps } from "next";
 import { useGlobalContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 import axios from "@/app/axios";
-import { updateItem } from "../app/lib/api";
-import * as idleAnim from "../app/animations/Ghost_Idle.json";
-import * as eatAnim from "../app/animations/Ghost_Eat.json";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser, setMountStore } from "@/redux/reducers/TaskReducer";
+
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
@@ -17,12 +13,9 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Catching from "@/public/catching.png"
 import announcmnt from "@/public/announcment.png"
-import diceGame from "@/public/gamebg.png"
-import flappy from "@/public/flappy-bird.png"
 import funGames from "@/public/fungames.png"
 import gm2 from "@/public/spinwheel.png"
-import gm3 from "@/public/raceing.png"
-import Lottery from "@/public/lotterythumb.png"
+
 import gm4 from "@/public/crdwe.png"
 import coinFLip from "@/public/coin.png"
 

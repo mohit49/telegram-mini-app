@@ -35,7 +35,7 @@ const AppFooter: React.FC = () => {
     <>
 <div className="flex justify-center fixed left-[00px] bottom-[0px] border z-[30] w-[calc(100%)]  bg-white py-2 px-0 border-t bg-[#f5f5f5] ">
 <div className="flex flex-row gap- items-center justify-around w-[100%] items-end ">
-<Link href={`/`} className="flex flex-col justify-center active-menu">
+<Link href={`/`} className="flex flex-col justify-center">
     <div
       className={
         "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
@@ -52,8 +52,8 @@ const AppFooter: React.FC = () => {
       
     
      <div className={"text-center text-[11px] font-bold text-[#000000] m-0 " + (router.pathname === "/"
-          ? "text-[#ffa4d5]"
-          : "text-[#000000]")}>Games</div>
+          ? "text-[#000000]"
+          : "text-[#aeaeae]")}>Games</div>
     </div>
   </Link>
   <Link href={`/`}  className="flex flex-col justify-between">
@@ -93,17 +93,23 @@ const AppFooter: React.FC = () => {
       <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Leaderboard</div>
     </div>
   </Link>
-  <Link href={`/`}  className="flex flex-col justify-between">
+  <Link href={`/activities`}  className="flex flex-col justify-between">
     <div
       className={
         "gamePad flex flex-col justify-center space-y-1 text-xs h-[55px] text-center rounded-xl items-center " +
-        (router.pathname === "/mine"
+        (router.pathname === "/activities"
           ? "text-[#00B2FF]"
-          : "text-[#A4A4A4]")
+          : "text-[#aeaeae]")
       }
     >
+       <div className={(router.pathname === "/activities"
+          ? "active-menu svg-icons mt-[-3px]"
+          : "")}>
      <Activity/>
-      <div className="text-center text-[11px] font-bold text-[#aeaeae] !m-0">Activity</div>
+     </div>
+      <div className={`text-center text-[11px] font-bold  !m-0  ${router.pathname === "/activities"
+          ? "text-[#000000]"
+          : "text-[#aeaeae]"}`}>Activity</div>
     </div>
   </Link>
     <div
@@ -125,6 +131,7 @@ Earn
  
 </div>
 </div>
+
 </>
   );
 };
