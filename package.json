@@ -35,6 +35,7 @@
         "lodash": "^4.17.21",
         "lucide-react": "^0.438.0",
         "mongodb": "^6.8.0",
+        "mongoose": "^8.9.2",
         "next": "^14.2.20",
         "notistack": "^3.0.1",
         "pg": "^8.12.0",

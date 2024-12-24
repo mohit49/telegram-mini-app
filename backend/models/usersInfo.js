@@ -1,11 +1,8 @@
-const mongoose = require('mongoose');
-
-// Define the schema for the Referral model
-const telegramUserSchema  = new mongoose.Schema({
+const telegramUserSchema = new mongoose.Schema({
   tele_id: {
     type: String,
     required: true,
-    unique:true
+    unique: true
   },
   first_name: {
     type: String,
@@ -25,23 +22,43 @@ const telegramUserSchema  = new mongoose.Schema({
   },
   credit: {
     type: Number,
-   
+    default: 0,
   },
+  creditTransactions: [
+    {
+      amount: {
+        type: Number,
+        required: true,
+      },
+      transactionType: {
+        type: String,
+        enum: ['dailylogin', 'referral', 'gameplay', 'new_user'], // Updated transaction types
+        required: true
+      },
+      reason: {
+        type: String,
+      },
+      referralId: {
+        type: String,
+        required: function() { return this.transactionType === 'referral'; } // Only required for 'referral' type
+      },
+      timestamp: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   refferedby: {
     type: String,
-  
   },
-  refferUnlock : {
+  refferUnlock: {
     type: Boolean,
-  
   },
-  lastGamePlay : {
+  lastGamePlay: {
     type: String,
-  
   },
-  lastLogin : {
+  lastLogin: {
     type: String,
-  
   },
   referrerDetails: [
     {
@@ -50,10 +67,8 @@ const telegramUserSchema  = new mongoose.Schema({
     },
   ],
   date_added: { type: Date, default: Date.now }
-
 });
 
-// Create the Referral model
 const userSchema = mongoose.model('TelegramUserSchema', telegramUserSchema);
 
 module.exports = userSchema;
