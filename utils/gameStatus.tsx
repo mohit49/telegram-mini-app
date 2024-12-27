@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from "@/pages/_app";
 import { updateRefferedUnlock, updateCredit, updateLastGamePlay } from "@/utils/api";
 const gameStatus = () => {
-    const { userData, gameStatus } = useGlobalContext();
+    const { userData, gameStatus }:any = useGlobalContext();
     useEffect(() => {
 
 
