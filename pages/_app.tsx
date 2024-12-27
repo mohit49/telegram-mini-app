@@ -18,6 +18,7 @@ interface UserData {
   username: string;
   photo_url?: string;
   credit?: any;
+  creditTransactions?:any
 }
 
 // Define the shape of your context state
