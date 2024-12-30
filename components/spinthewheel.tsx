@@ -7,6 +7,8 @@ import flappySad from '@/public/overbird.png';
 import { Button } from './ui/button';
 import { TonIcon } from '@/utils/icons';
 import SpinSplash from "@/public/spin-wheel/spinSplash.jpg"
+import { useGlobalContext } from "@/pages/_app";
+import { updateWallet } from '@/utils/api';
 
 // Define types for the data structure and spin result
 interface ImageProps {
@@ -47,9 +49,11 @@ const data: any = [
 ];
 
 const SpinWheelWithBetting: React.FC = () => {
+     const {walletBalance , userData}  = useGlobalContext();
+   
   const [mustSpin, setMustSpin] = useState<boolean>(false);
   const [prizeNumber, setPrizeNumber] = useState<number>(0);
-  const [totalAmount, setTotalAmount] = useState<number>(100); // Starting amount
+  const [totalAmount, setTotalAmount] = useState<number>(walletBalance); // Starting amount
   const [betAmount, setBetAmount] = useState<number>(0);
   const [selectedMultiplier, setSelectedMultiplier] = useState<number>(1); // User's selected multiplier bet
   const [message, setMessage] = useState<string>('');
@@ -102,6 +106,7 @@ const SpinWheelWithBetting: React.FC = () => {
 
   // Update the total amount and message once the wheel stops spinning
   const handleStopSpinning = (): void => {
+   const  userId =userData?.tele_id
     if (spinResult) {
       const { prizeMultiplier, prizeAmount } = spinResult;
       let newTotalAmount = totalAmount;
@@ -109,10 +114,22 @@ const SpinWheelWithBetting: React.FC = () => {
       if (selectedMultiplier === prizeMultiplier) {
         newTotalAmount += prizeAmount;
         setMessage(`You won! You bet on ${selectedMultiplier}x and won ${prizeAmount}.`);
+        const walletData:any =  {
+          "type": "profit",
+          "amount": prizeAmount,
+          "description": `Won ${prizeAmount} Ton on Spin The Wheel`
+        }
+        updateWallet({userId , walletData})
         setWin(true);
       } else {
         newTotalAmount -= prizeAmount;
         setMessage(`You lost. You bet on ${selectedMultiplier}x and lost ${prizeAmount}.`);
+        const walletData:any =  {
+          "type": "loss",
+          "amount": prizeAmount,
+          "description": `Loss ${prizeAmount} Ton on Spin The Wheel`
+        }
+        updateWallet({userId , walletData})
         setWin(false);
       }
 

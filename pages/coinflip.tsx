@@ -3,6 +3,7 @@ import head from "@/public/coinflip/head.png";
 import tails from "@/public/coinflip/tails.png";
 import Image from 'next/image';
 import splash from "@/public/coinflip/splash.png";
+import { useGlobalContext } from "@/pages/_app";
 type BetMultiplier = 0.5 | 1 | 1.5 | 2;
 
 interface CoinFlipProps {
@@ -10,12 +11,13 @@ interface CoinFlipProps {
 }
 
 const CoinFlipGame: React.FC<CoinFlipProps> = ({ initialBet }) => {
+  const {walletBalance}  = useGlobalContext();
   const [selectedSide, setSelectedSide] = useState<'heads' | 'tails'>('heads');
   const [betMultiplier, setBetMultiplier] = useState<BetMultiplier>(1);
   const [betAmount, setBetAmount] = useState<number>(10); // Default bet amount is 10
   const [isFlipping, setIsFlipping] = useState(false);
   const [result, setResult] = useState<string | null>(null);
-  const [playerBalance, setPlayerBalance] = useState(500);
+  const [playerBalance, setPlayerBalance] = useState(walletBalance);
   const [flipResult, setFlipResult] = useState<'heads' | 'tails' | null>(null); // To store the result of the flip
   const [winningAmount, setWinningAmount] = useState<number | null>(null); // To store the winning amount
   const [totalWinnings, setTotalWinnings] = useState<number>(0); // New state to track total winnings

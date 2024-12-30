@@ -25,7 +25,7 @@ interface HeaderProps {
 
 
 const Header: React.FC<HeaderProps> = () => {
-  const { userData } = useGlobalContext();
+  const { userData, walletBalance } = useGlobalContext();
   const [isActive, setIsActive] = useState<boolean>(false); // State with explicit type
   const [textToCopy, setTextToCopy] = useState("UQANEMrGMg5QK4F7njbsc1pdMmZO2pFdYKlFLBCE2Z-oy8UC");
   const [copySuccess, setCopySuccess] = useState(false);
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = () => {
               <p className="text-[#000000] font-bold">$TON</p>
             </div>
             <div className="flex flex-row items-center gap-2">
-              <p className="text-[#000000] font-bold">0</p>
+              <p className="text-[#000000] font-bold">{walletBalance}</p>
             </div>
           </div>
          

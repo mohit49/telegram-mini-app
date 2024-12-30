@@ -124,4 +124,30 @@ export const fetchTelegramUser = async (userId: string) => {
     }
   };
 
+  // manage transictions
+
+  export const walletDetails = async (userId: string) => {
+    try {
+      const response = await axios.get(`https://app.mazzl.ae/api/transactions/${userId || ""}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error; // Re-throw error for further handling
+    }
+  };
+
+  export const updateWallet = async (payload: any) => {
+    const { userId, walletData } = payload;
+    try {
+      const response = await axios.post(`${apiBaseUrl}/transactions/${userId}`, walletData, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      console.log('Referral details updated:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating referral details:', error);
+      throw error;
+    }
+  };
+
   

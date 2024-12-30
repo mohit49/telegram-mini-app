@@ -6,7 +6,7 @@ import { TonConnectUIProvider, THEME } from "@tonconnect/ui-react";
 import { PersistGate } from "redux-persist/integration/react";
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import gameStatus from "@/utils/gameStatus";
-import { sendUserData, updateReferralDetails, updateRefferedBy, fetchTelegramUser, updateRefferedUnlock, updateCredit, updateLastLogin } from "@/utils/api";
+import { sendUserData, updateReferralDetails, updateRefferedBy, fetchTelegramUser, updateRefferedUnlock, updateCredit, updateLastLogin, walletDetails } from "@/utils/api";
 
 import { io, Socket } from 'socket.io-client';
 
@@ -32,6 +32,8 @@ interface GlobalState {
   setGameStatus: React.Dispatch<React.SetStateAction<any>>;
   gameStatus: any;
   socket: Socket;
+  walletBalance:number;
+  setWalletBalance:any
 }
 
 // Create the Context
@@ -49,6 +51,7 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [teleUser, setTeleUser] = useState<any>(null);
   const [telegram, setTelegram] = useState<any>(null);
   const [gameStatusState, setGameStatus] = useState<any>(null);
+  const [walletBalance, setWalletBalance] = useState<number>(0);
 
 
   const [params, setParams] = useState<any>()
@@ -92,11 +95,15 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
             credit: 0
           };
 
+         
+
           sendUserData(userData)
             .then((response: any) => {
               console.log("User data saved:", response);
               setTeleUser(user);
               setUserDate(response.user);
+
+
 
               const newAccouCredit = async () => {
                 const updatecredit = await updateCredit({
@@ -162,9 +169,22 @@ const GlobalProvider = ({ children }: { children: ReactNode }) => {
             refrls();
           }
 
+          walletDetails(userData?.tele_id).then((response: any) => {
+         
+            setWalletBalance(user);
+            
+
+          })
+
         } else {
           setTeleUser(user);
           setUserDate(data);
+          walletDetails(user?.id).then((response: any) => {
+         
+            setWalletBalance(response?.transactions?.tonAmount);
+            
+
+          })
           const has24HoursPassed = (lastTimestamp: any) => {
             if (!lastTimestamp) return true; // If no timestamp exists, treat it as expired
             const now = new Date();
@@ -230,7 +250,9 @@ useEffect(()=>{
       setTelegram,
       setGameStatus,
       gameStatus: gameStatusState,
-      telegram
+      telegram,
+      walletBalance,
+      setWalletBalance
     }}>
       {children}
     </GlobalContext.Provider>

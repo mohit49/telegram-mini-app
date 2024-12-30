@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import SplashScreen from "@/public/catching/splash.gif"
 import TonLogo from "@/public/dimond.png"
 import { TonIcon } from '@/utils/icons';
-
+import { useGlobalContext } from "@/pages/_app";
+import { updateWallet } from '@/utils/api';
 // Type for the blocks
 interface Block {
   id: number;
@@ -12,12 +13,13 @@ interface Block {
 }
 
 const Catching: React.FC = () => {
+    const {walletBalance , userData}  = useGlobalContext();
   const [blocks, setBlocks] = useState<Block[]>([]);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [betAmount, setBetAmount] = useState<number>(0);
-  const [balance, setBalance] = useState<number>(1000); // Account balance starts at 1000
+  const [balance, setBalance] = useState<number>(walletBalance); // Account balance starts at 1000
   const [betPlaced, setBetPlaced] = useState<boolean>(false);
   const [popup, setPopUp] = useState(false);
   const [revealedCount, setRevealedCount] = useState(0); // Track revealed non-bomb blocks
@@ -56,6 +58,7 @@ const Catching: React.FC = () => {
 
   // Handle the block click event
   const handleBlockClick = (id: number) => {
+    const  userId =userData?.tele_id
     if (gameOver) return;
 
     const newBlocks = [...blocks];
@@ -69,6 +72,12 @@ const Catching: React.FC = () => {
         const totalLoss = currentBet + currentWinnings;
         setMessage(`Game Over! You hit the bomb. You lost $${totalLoss}.`);
         setBalance(balance - totalLoss); // Deduct bet and winnings if bomb is hit
+            const walletData:any =  {
+                  "type": "loss",
+                  "amount": totalLoss,
+                  "description": `Loss ${totalLoss} Ton on Catch Doodle`
+                }
+                updateWallet({userId , walletData})
         setGameOver(true);
         setTimeout(() => {
           setPopUp(true); // Show the popup after 1 second
@@ -79,6 +88,13 @@ const Catching: React.FC = () => {
         const earnedAmount = betAmount * 2; // Player earns double the bet amount for each correct tap
         setCurrentWinnings(currentWinnings + earnedAmount); // Add earnings to current winnings
         setBalance(balance + earnedAmount); // Add winnings to balance
+
+        const walletData:any =  {
+          "type": "profit",
+          "amount": earnedAmount,
+          "description": `Won ${earnedAmount} Ton on Catch Doodle`
+        }
+        updateWallet({userId , walletData})
         setMessage(`Keep going! Bet: $${betAmount}`);
         
         // If all non-bomb blocks are revealed, the player wins the game
