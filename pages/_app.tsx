@@ -39,6 +39,7 @@ const GlobalContext = createContext<GlobalState | undefined>(undefined);
 
 // Create a Provider component
 const GlobalProvider = ({ children }: { children: ReactNode }) => {
+  
   const socket = io('https://app.mazzl.ae/', {
     transports: ['websocket'], // Use WebSocket as the transport method
   });
@@ -215,7 +216,9 @@ useEffect(()=>{
     // Assuming you already have the userId available
     const userId = 'some_unique_user_id';
     socket.emit('authenticate', userData?.tele_id);
+  
   });
+
 },[userData])
   return (
     <GlobalContext.Provider value={{

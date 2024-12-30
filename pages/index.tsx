@@ -53,11 +53,18 @@ interface HeaderProps {
 
 
 const Index: React.FC<IndexProps> = ({ data }) => {
+const [onlineUsers , setOnlineUsers] = useState<any>();
+  const { userData, setUserDate, setTeleUser, teleUser, setTelegram, telegram , socket } = useGlobalContext();
 
-  const { userData, setUserDate, setTeleUser, teleUser, setTelegram, telegram } = useGlobalContext();
 
+useEffect(()=>{
+  if(socket) {
+  socket.on('onlineUserCount', (count: number) => {
+    setOnlineUsers(count)
+  });
+}
 
-
+})
 
 
 
@@ -142,6 +149,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
               </div>
             </div>
           </div>
+          {onlineUsers > 0 && <p className="font-bold py-3 text-center"> {onlineUsers} More user Online Now</p> }
         </div>
       </div>
       <AppFooter />
